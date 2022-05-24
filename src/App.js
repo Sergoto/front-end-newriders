@@ -7,25 +7,24 @@ import TopBar from "./components/TopBar"
 import Main from './components/Main';
 import MoodMap from './components/MoodMap';
 import Entry from './components/Entry';
-
+import Navbar from './components/Navbar';
+import Button from '@mui/material/Button';
 
 function App() {
   return (
-    <div>
-
-      <header>
-        <TopBar />
-      </header>
-
-      <main >
-        <Nav />
-
+    <div className="App">
+      <div className="header">
+        <header>
+          <TopBar />
+        </header>
+      </div>
+      <Navbar />
+      <main>
         <Main />
-
       </main>
-
     </div>
   );
 }
 
-export default App;
+export default App
+
