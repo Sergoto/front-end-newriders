@@ -16,6 +16,13 @@
   background-color: #F5D6C4
 }
 
+#gridContainer{
+  display: grid;
+  grid-template-columns: 10px 10px 10px 10px 10px 10px 10px 10px 10px 10px;
+  column-gap: 20px;
+  row-gap: 10px;
+}
+
 .container {
   display: grid;
   justify-content: center;
