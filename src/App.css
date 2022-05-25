@@ -37,6 +37,10 @@
   display: flex auto;
   min-width: 100px;
   min-height: 50rem;
+  flex-direction:row;
 
 
 } 
+.divContainer{
+flex-grow: 1;
+}
