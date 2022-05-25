@@ -43,13 +43,13 @@
 .mainComp {
   border: 1px solid black;
   margin-top: 15px;
-  display: flex auto;
-  min-width: 100px;
-  min-height: 50rem;
+  display: flex;
   flex-direction:row;
-
+justify-content: space-evenly;
+width: fit-content;
 
 } 
 .divContainer{
-flex-grow: 1;
+padding:10ch;
+border: 1px solid black;
 }

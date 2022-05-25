@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Entry() {
-      // Simple POST request with a JSON body using fetch
+      /* Simple POST request with a JSON body using fetch
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -11,6 +11,7 @@ function Entry() {
         .then(response => response.json())
        .then(data => this.setState({ postId: data.id })
       );
+    */
   return  <div>
        <div>
     Today's Entry
