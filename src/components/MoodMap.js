@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import Square from '../components/Square'
 
@@ -70,12 +71,10 @@ let result
   
    
   return (
-    <div id='gridContainer'>
-
+    <div className='cards' id="gridContainer">
       {squares}
-
     </div>
-  )
+  );
 }
 
 export default MoodMap

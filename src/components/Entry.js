@@ -11,10 +11,24 @@ function Entry() {
         .then(response => response.json())
        .then(data => this.setState({ postId: data.id })
       );
-      */
-  return (
-    <div>Entry</div>
-  )
+    */
+  return  <div>
+       <div>
+    Today's Entry
+    </div>
+    <div>
+      Overall Mood
+    </div>
+    <div>
+      Notes:
+    </div>
+    <div>
+      Today's Goals
+    </div>
+    <div>
+      Goals for Tomorrow
+    </div>
+  </div>;
 }
 
 export default Entry
