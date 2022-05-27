@@ -8,7 +8,6 @@ function MoodMap() {
 
   function getPast100Days(){
     let dates = []
-    let today = new Date(Date.now());
     for(let i=0;i<100;i++){
       let multiplyer = i*86400000
       let date = new Date(Date.now()-multiplyer)
@@ -56,7 +55,7 @@ function MoodMap() {
   }
 
   let dates = getPast100Days()
-
+  const [refresh, setRefresh] = useState(false)
   const [mood, setmood ] = useState([]);
   const [squares, setsquares ] = useState([]);
     useEffect(() => {
@@ -92,8 +91,11 @@ return map
   
    
   return (
-    <div className='cards' id="gridContainer">
+    <div className='cards' >
+      <h3>100 Day Mood Map</h3>
+      <div id="gridContainer">
       {mapSquares(squares)}
+      </div>
     </div>
   );
 }
