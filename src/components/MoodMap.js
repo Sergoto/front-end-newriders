@@ -4,7 +4,7 @@ import Square from '../components/Square'
 
 
 function MoodMap() {
-  let squares;
+ 
 
   function getPast100Days(){
     let dates = []
@@ -25,9 +25,40 @@ function MoodMap() {
     return dates
   }
 
+
+
+  function combineDateData (dates, data){
+    let combinedArr = []
+    // looping through all the dates
+    for(let i=0;i<dates.length;i++){
+      // one entry per date = 100
+     let entry = {};
+     // add date to the entry object
+     entry.date = dates[i]
+     // looping through the data object
+     let dayData
+     for(let w=0;w<data.length;w++){
+      if(dates[i].dateString == data[w].date){
+        entry.data = data[w]
+        dayData = data[w]
+      }
+     }
+     if(dayData == undefined){
+       dayData = {mood:null}
+     }
+     entry.data = dayData
+     combinedArr.push(entry)
+    
+    }
+    console.log(combinedArr)
+ 
+    return combinedArr
+  }
+
   let dates = getPast100Days()
 
-  const [mood, setmood] = useState([]);
+  const [mood, setmood ] = useState([]);
+  const [squares, setsquares ] = useState([]);
     useEffect(() => {
       let url = "http://localhost:8001/";
       fetch(url) //<-- the url as a string
@@ -36,7 +67,8 @@ function MoodMap() {
     // Take the json and do something with it
     .then(json => {
       setmood(json)
-      
+      let newsquares = combineDateData(dates, json)
+      setsquares(newsquares)
       // the json parameter holds the json data
       // so here's where you will need to
       // use the setBirds method put the json into state
@@ -45,34 +77,23 @@ function MoodMap() {
     .catch(console.error);
     }, []);
 
-    function mapSquares(mood){
-      
-     
-      squares = dates.map((date, index) =>{
-let result 
-        for(let w=0;w<mood.length;w++){
-          if(date.dateString == mood[w].date){
-            console.log(mood[w])
-            result = < Square key={index} mood={mood[w].mood} classname="gridBox" date={date}/>
-          }
-          else{
-            result =  < Square key={index} classname="gridBox" date={date}/>
-          }
-        }
     
-  
-        return result
-      })
-    }
-    mapSquares(mood)
+function mapSquares(squares){
 
+  let map = squares.map((square,index) => {
+    
+console.log(square.data.mood)
+   return <Square key={index} mood={square.data.mood} classname="gridBox" date={square.date} />
+  })
+return map
+}
   
 
   
    
   return (
     <div className='cards' id="gridContainer">
-      {squares}
+      {mapSquares(squares)}
     </div>
   );
 }
