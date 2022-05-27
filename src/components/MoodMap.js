@@ -1,9 +1,60 @@
 import { Grid } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import Square from '../components/Square'
+import axios from 'axios';
 
 
 function MoodMap() {
+
+  const [message, setMessage] = useState("");
+  const [id, setId] = useState("");
+  const [method, setMethod] = useState("");
+  const [date, setDate] = useState("");
+  const [mood, setmood ] = useState([]);
+
+
+  axios.get('http://localhost:8001/today').then((res)=>{
+    console.log(res.data.length)
+    if(res.data.length>0){
+      setId(res.data[0]._id)
+      setMethod("put")
+    console.log(res.data[0]._id)
+    }
+    else{
+     setMethod("post")
+    }
+   })
+ 
+ 
+   let handleSubmit = async (e) => {
+     e.preventDefault();
+     if(method == "post"){
+     axios.post('http://localhost:8001/add', {
+       mood: mood
+     })
+     .then((response) => {
+       console.log(response);
+     }, (error) => {
+       console.log(error);
+     }).then(()=>{
+      console.log("done")
+     })
+   
+   }
+   else{
+ 
+     axios.put('http://localhost:8001/'+id, {
+       mood: mood
+     })
+     .then((response) => {
+       console.log(response);
+     }, (error) => {
+       console.log(error);
+     }).then(()=>{
+       console.log("done")
+     })
+ 
+   }}
  
 
   function getPast100Days(){
@@ -56,7 +107,7 @@ function MoodMap() {
 
   let dates = getPast100Days()
   const [refresh, setRefresh] = useState(false)
-  const [mood, setmood ] = useState([]);
+  const [thismood, setthismood] = useState(false)
   const [squares, setsquares ] = useState([]);
     useEffect(() => {
       let url = "http://localhost:8001/";
@@ -65,7 +116,7 @@ function MoodMap() {
     .then(res => res.json())
     // Take the json and do something with it
     .then(json => {
-      setmood(json)
+      setthismood(json)
       let newsquares = combineDateData(dates, json)
       setsquares(newsquares)
       // the json parameter holds the json data
@@ -91,11 +142,45 @@ return map
   
    
   return (
-    <div className='cards' >
-      <h3>100 Day Mood Map</h3>
-      <div id="gridContainer">
-      {mapSquares(squares)}
+    <div id="mainCon">
+      <div className='cards' >
+        <h3>100 Day Mood Map</h3>
+        <div id="gridContainer">
+          {mapSquares(squares)}
+        </div>
       </div>
+      <div className='cards'>
+        <button>←</button>
+        <div>{date}</div>
+        <button>→</button>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={mood}
+            placeholder="mood"
+            onChange={(e) => setmood(e.target.value)}
+          /> 
+          <button type="submit">Create</button>
+          <div className="message">{message ? <p>{message}</p> : null}</div>
+        </form>
+    <>
+       <div>
+        Today's Entry
+       </div>
+      <div>
+        Overall Mood
+        </div>
+        <div>
+      Notes:
+    </div>
+    <div>
+      Today's Goals
+    </div>
+    <div>
+      Goals for Tomorrow
+    </div>
+    </>
+  </div>
     </div>
   );
 }
