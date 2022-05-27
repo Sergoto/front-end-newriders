@@ -1,6 +1,10 @@
 import React from 'react'
 import { useState } from 'react';
+import axios from 'axios';
 
+function refreshPage() {
+  window.location.reload(true);
+}
 
 function Entry() {
   const [mood, setMood] = useState("")
@@ -9,39 +13,20 @@ function Entry() {
 
   let handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    axios.post('http://localhost:8001/add', {
+      mood: mood
+    })
+    .then((response) => {
+      console.log(response);
+    }, (error) => {
+      console.log(error);
+    }).then(()=>{
+      refreshPage()
+    })
   
-
-
-      (async () => {
-        const rawResponse = await fetch('http://localhost:8001/add', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({mood: mood})
-        });
-        const content = await rawResponse.json();
-       
-      
-        console.log(content);
-      })();
-
-
-   
-  };
-      /* Simple POST request with a JSON body using fetch
-      const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: 'React POST Request Example' })
-    };
-    fetch('http://localhost:8001/', requestOptions)
-        .then(response => response.json())
-       .then(data => this.setState({ postId: data.id })
-      );
-    */
+  }
+  
   return  <div>
 
 <form onSubmit={handleSubmit}>
