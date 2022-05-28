@@ -11,7 +11,7 @@ function MoodMap() {
   const [method, setMethod] = useState("");
   const [date, setDate] = useState("");
   const [mood, setmood ] = useState([]);
-
+  const [squares, setSquares ] = useState([]);
 
   axios.get('http://localhost:8001/today').then((res)=>{
     console.log(res.data.length)
@@ -33,6 +33,7 @@ function MoodMap() {
        mood: mood
      })
      .then((response) => {
+     
        console.log(response);
      }, (error) => {
        console.log(error);
@@ -47,7 +48,29 @@ function MoodMap() {
        mood: mood
      })
      .then((response) => {
-       console.log(response);
+      console.log(squares)
+      
+
+       console.log(response.data);
+       let newSquares = squares;
+       for(let w =0;w<squares.length;w++){
+         if(response.data.date == squares[w].date.dateString){
+          
+           newSquares[w].data = response.data
+         }
+       }
+
+       setthismood(newSquares)
+
+       var currentToCompare = newSquares.slice();
+       currentToCompare.push("");
+       currentToCompare.pop();
+       setSquares(currentToCompare);
+
+
+       
+
+
      }, (error) => {
        console.log(error);
      }).then(()=>{
@@ -75,7 +98,9 @@ function MoodMap() {
     return dates
   }
 
-
+function useEf (){
+  
+}
 
   function combineDateData (dates, data){
     let combinedArr = []
@@ -106,9 +131,8 @@ function MoodMap() {
   }
 
   let dates = getPast100Days()
-  const [refresh, setRefresh] = useState(false)
   const [thismood, setthismood] = useState(false)
-  const [squares, setsquares ] = useState([]);
+
     useEffect(() => {
       let url = "http://localhost:8001/";
       fetch(url) //<-- the url as a string
@@ -118,7 +142,7 @@ function MoodMap() {
     .then(json => {
       setthismood(json)
       let newsquares = combineDateData(dates, json)
-      setsquares(newsquares)
+      setSquares(newsquares)
       // the json parameter holds the json data
       // so here's where you will need to
       // use the setBirds method put the json into state
@@ -127,6 +151,7 @@ function MoodMap() {
     .catch(console.error);
     }, []);
 
+    
     
 function mapSquares(squares){
 
@@ -145,7 +170,7 @@ return map
     <div id="mainCon">
       <div className='cards' >
         <h3>100 Day Mood Map</h3>
-        <div id="gridContainer">
+        <div id="gridContainer" >
           {mapSquares(squares)}
         </div>
       </div>

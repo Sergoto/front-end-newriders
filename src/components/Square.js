@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 
 function Square(props) {
+  const [mood, setmood ] = useState([]);
+  
   let backgroundColor = (props.mood ? `#${props.mood}` : null)
   console.log(backgroundColor)
   const mystyle = {
