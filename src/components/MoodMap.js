@@ -9,22 +9,26 @@ function MoodMap() {
   const [message, setMessage] = useState("");
   const [id, setId] = useState("");
   const [method, setMethod] = useState("");
-  const [date, setDate] = useState("");
-  const [mood, setmood ] = useState([]);
+  const [date, setDate] = useState("Pick a Square to Start");
+  const [mood, setmood ] = useState("");
+  const [note, setNote ] = useState("");
+  const [newgoal, setNewgoal ] = useState("");
+
   const [moodfill, setmoodfill ] = useState("");
+  const [notefill, setnotefill ] = useState("");
   const [squares, setSquares ] = useState([]);
 
-  // click on a square, the date updates, the post/put updates
-  // change the date state
-
-  // get all the squares
   function getToday(){
   axios.get('http://localhost:8001/today').then((res)=>{
     console.log(res.data.length)
     if(res.data.length>0){
       setId(res.data[0]._id)
+      setNote(res.data[0].note)
+      setNewgoal(res.data[0].goalForToday)
       setMethod("put")
+      setmood(res.data[0].mood)
       setmoodfill(res.data[0].mood)
+      setnotefill(res.data[0].note)
     console.log(res.data[0].date)
     setDate(res.data[0].date)
     }
@@ -42,14 +46,21 @@ function MoodMap() {
       if(res.data.length>0){
         setId(res.data[0]._id)
         setMethod("put")
+        setmood(res.data[0].mood)
+        setNote(res.data[0].note)
         setmoodfill(res.data[0].mood)
+        setnotefill(res.data[0].note)
       console.log(res.data[0].date)
       setDate(res.data[0].date)
       }
       else{
        setMethod("post")
        setId("")
+       setmood("")
+       setNote("")
        setmoodfill("")
+       setnotefill("")
+       
        setDate(date)
       }
      })
@@ -62,7 +73,11 @@ function MoodMap() {
      if(method == "post"){
      axios.post('http://localhost:8001/add', {
        mood: mood,
-       date: date
+       date: date,
+       note: note,
+       goalForToday:newgoal
+
+
      })
      .then((response) => {
      
@@ -100,7 +115,9 @@ function MoodMap() {
    else{
  
      axios.put('http://localhost:8001/'+id, {
-       mood: mood
+       mood: mood,
+       note: note,
+       goalForToday: newgoal
      })
      .then((response) => {
       console.log(squares)
@@ -234,32 +251,35 @@ return map
         </div>
       </div>
       <div className='cards'>
-      <h5>
-        Today's Entry
-       </h5>
-        <div style={{display:"flex", justifyContent:"space-between"}}>
-          <button>←</button>
+        <div style={{display:"flex", justifyContent:"center"}}>
+        
           <h5>{date}</h5>
-          <button>→</button>
+       
         </div>
         <br />
         <form onSubmit={handleSubmit}>
+          <span>Mood Hex</span>
           <input
             type="text"
             value={mood}
             placeholder={moodfill}
             onChange={(e) => setmood(e.target.value)}
           /> 
+            <br />
+            <span>Notes:</span>
+          <input
+            type="text"
+            value={note}
+            placeholder={notefill}
+            onChange={(e) => setNote(e.target.value)}
+          /> 
+          <br />
           <button type="submit">Create</button>
           <div className="message">{message ? <p>{message}</p> : null}</div>
         </form>
     <>
-      <div>
-        Overall Mood
-        </div>
-        <div>
-      Notes:
-    </div>
+  
+       
     <div>
       Today's Goals
     </div>
