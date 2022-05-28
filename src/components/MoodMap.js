@@ -14,6 +14,8 @@ function MoodMap() {
   const [note, setNote ] = useState("");
   const [newgoal, setNewgoal ] = useState("");
 
+  const [newgoalfill,setnewgoalfill] = useState("");
+
   const [moodfill, setmoodfill ] = useState("");
   const [notefill, setnotefill ] = useState("");
   const [squares, setSquares ] = useState([]);
@@ -259,6 +261,14 @@ return map
         <br />
         <form onSubmit={handleSubmit}>
           <span>Mood Hex</span>
+          <div style={{display:"flex"}}>
+            <div className='hex' id="ff6961" style={{backgroundColor:"#ff6961"}}></div>
+            <div className='hex' id="ffb347" style={{backgroundColor:"#ffb347"}}></div>
+            <div className='hex' id="fdfd96" style={{backgroundColor:"#fdfd96"}}></div>
+            <div className='hex' id="c6f1c6" style={{backgroundColor:"#c6f1c6"}}></div>
+            <div className='hex' id="58d558" style={{backgroundColor:"#58d558"}}></div>
+          </div>
+          <br />
           <input
             type="text"
             value={mood}
@@ -274,6 +284,13 @@ return map
             onChange={(e) => setNote(e.target.value)}
           /> 
           <br />
+          <span>Goals for today:</span>
+          <input
+            type="text"
+            value={newgoal}
+            placeholder={newgoalfill}
+            onChange={(e) => setNote(e.target.value)}
+          /> 
           <button type="submit">Create</button>
           <div className="message">{message ? <p>{message}</p> : null}</div>
         </form>

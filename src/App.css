@@ -13,6 +13,13 @@
   justify-content: space-around;
 }
 
+.hex{
+  padding:30px;
+  margin: auto;
+  width: 50px;
+  border: 1px solid black;
+}
+
 .topBar {
   position: sticky;
   top: 0;
