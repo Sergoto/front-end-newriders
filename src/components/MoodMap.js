@@ -11,30 +11,85 @@ function MoodMap() {
   const [method, setMethod] = useState("");
   const [date, setDate] = useState("");
   const [mood, setmood ] = useState([]);
+  const [moodfill, setmoodfill ] = useState("");
   const [squares, setSquares ] = useState([]);
 
+  // click on a square, the date updates, the post/put updates
+  // change the date state
+
+  // get all the squares
+  function getToday(){
   axios.get('http://localhost:8001/today').then((res)=>{
     console.log(res.data.length)
     if(res.data.length>0){
       setId(res.data[0]._id)
       setMethod("put")
-    console.log(res.data[0]._id)
+      setmoodfill(res.data[0].mood)
+    console.log(res.data[0].date)
+    setDate(res.data[0].date)
     }
     else{
      setMethod("post")
     }
    })
+  }
+
+   function squareClick (date){
+     let formDate = date.replaceAll('/', '-')
+     console.log(formDate)
+    axios.get('http://localhost:8001/date/'+formDate).then((res)=>{
+      console.log(res.data.length)
+      if(res.data.length>0){
+        setId(res.data[0]._id)
+        setMethod("put")
+        setmoodfill(res.data[0].mood)
+      console.log(res.data[0].date)
+      setDate(res.data[0].date)
+      }
+      else{
+       setMethod("post")
+       setId("")
+       setmoodfill("")
+       setDate(date)
+      }
+     })
+
+   }
  
  
    let handleSubmit = async (e) => {
      e.preventDefault();
      if(method == "post"){
      axios.post('http://localhost:8001/add', {
-       mood: mood
+       mood: mood,
+       date: date
      })
      .then((response) => {
      
        console.log(response);
+
+
+       console.log(response.data);
+       let newSquares = squares;
+       for(let w =0;w<squares.length;w++){
+         if(response.data.date == squares[w].date.dateString){
+          
+           newSquares[w].data = response.data
+         }
+       }
+
+       setthismood(newSquares)
+
+       var currentToCompare = newSquares.slice();
+       currentToCompare.push("");
+       currentToCompare.pop();
+       setSquares(currentToCompare);
+
+
+
+       
+
+       
      }, (error) => {
        console.log(error);
      }).then(()=>{
@@ -98,10 +153,6 @@ function MoodMap() {
     return dates
   }
 
-function useEf (){
-  
-}
-
   function combineDateData (dates, data){
     let combinedArr = []
     // looping through all the dates
@@ -134,6 +185,7 @@ function useEf (){
   const [thismood, setthismood] = useState(false)
 
     useEffect(() => {
+      getToday()
       let url = "http://localhost:8001/";
       fetch(url) //<-- the url as a string
     // Wait for the response and convert it to json
@@ -151,14 +203,21 @@ function useEf (){
     .catch(console.error);
     }, []);
 
-    
+    function handleClick (e){
+      e.preventDefault();
+
+      let copy = e.target
+      console.log(copy.id)
+      squareClick(copy.id)
+
+    }
     
 function mapSquares(squares){
 
   let map = squares.map((square,index) => {
     
-console.log(square.data.mood)
-   return <Square key={index} mood={square.data.mood} classname="gridBox" date={square.date} />
+console.log(square.data)
+   return <Square key={index} id={square.date.dateString}  onClick={handleClick} mood={square.data.mood} classname="gridBox" date={square.date} />
   })
 return map
 }
@@ -169,29 +228,32 @@ return map
   return (
     <div id="mainCon">
       <div className='cards' >
-        <h3>100 Day Mood Map</h3>
+        <h4>100 Day Mood Map</h4>
         <div id="gridContainer" >
           {mapSquares(squares)}
         </div>
       </div>
       <div className='cards'>
-        <button>←</button>
-        <div>{date}</div>
-        <button>→</button>
+      <h5>
+        Today's Entry
+       </h5>
+        <div style={{display:"flex", justifyContent:"space-between"}}>
+          <button>←</button>
+          <h5>{date}</h5>
+          <button>→</button>
+        </div>
+        <br />
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             value={mood}
-            placeholder="mood"
+            placeholder={moodfill}
             onChange={(e) => setmood(e.target.value)}
           /> 
           <button type="submit">Create</button>
           <div className="message">{message ? <p>{message}</p> : null}</div>
         </form>
     <>
-       <div>
-        Today's Entry
-       </div>
       <div>
         Overall Mood
         </div>

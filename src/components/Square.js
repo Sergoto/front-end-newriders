@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 function Square(props) {
   const [mood, setmood ] = useState([]);
-  
+
   let backgroundColor = (props.mood ? `#${props.mood}` : null)
   console.log(backgroundColor)
   const mystyle = {
@@ -13,7 +13,7 @@ function Square(props) {
     border:"1px solid"
   };
   return (
-    <div style={mystyle}>
+    <div style={mystyle} onClick={props.onClick} id={props.id} date={props.date.dateString}>
 
     </div>
   )
