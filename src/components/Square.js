@@ -4,7 +4,7 @@ function Square(props) {
   const [mood, setmood ] = useState([]);
 
   let backgroundColor = (props.mood ? `#${props.mood}` : null)
-  console.log(backgroundColor)
+
   const mystyle = {
     color: backgroundColor,
     width:"10px",

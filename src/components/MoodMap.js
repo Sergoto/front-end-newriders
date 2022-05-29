@@ -6,6 +6,9 @@ import axios from 'axios';
 
 function MoodMap() {
 
+  
+const [moodselection, setMoodselection ] = useState("");
+
   const [message, setMessage] = useState("");
   const [id, setId] = useState("");
   const [method, setMethod] = useState("");
@@ -31,6 +34,10 @@ function MoodMap() {
       setmood(res.data[0].mood)
       setmoodfill(res.data[0].mood)
       setnotefill(res.data[0].note)
+
+      setMoodselection(res.data[0].mood)
+      document.getElementById(res.data[0].mood).style.boxShadow = "0px 5px 15px rgba(0, 0, 0, 0.35)";
+
     console.log(res.data[0].date)
     setDate(res.data[0].date)
     }
@@ -40,11 +47,10 @@ function MoodMap() {
    })
   }
 
-   function squareClick (date){
+   function squareClick (date, e){
      let formDate = date.replaceAll('/', '-')
-     console.log(formDate)
     axios.get('http://localhost:8001/date/'+formDate).then((res)=>{
-      console.log(res.data.length)
+     console.log(res.data.length)
       if(res.data.length>0){
         setId(res.data[0]._id)
         setMethod("put")
@@ -52,11 +58,38 @@ function MoodMap() {
         setNote(res.data[0].note)
         setmoodfill(res.data[0].mood)
         setnotefill(res.data[0].note)
-      console.log(res.data[0].date)
+
+        
+        setMoodselection(res.data[0].mood)
+        document.getElementById(res.data[0].mood).style.boxShadow = "0px 5px 15px rgba(0, 0, 0, 0.35)";
+        console.log(e.target)
+        
+
+        try{
+      document.getElementById(moodselection).style.boxShadow = "";
+       setMoodselection(res.data[0].mood)
+        
+       document.getElementById(res.data[0].mood).style.boxShadow = "0px 5px 15px rgba(0, 0, 0, 0.35)";
+        }
+        catch(e){
+
+        }
+
+      
+     
+  
       setDate(res.data[0].date)
       }
       else{
        setMethod("post")
+       
+       try{
+        document.getElementById(moodselection).style.boxShadow = "";
+         setMoodselection("")
+         }
+          catch(e){
+  
+          }
        setId("")
        setmood("")
        setNote("")
@@ -68,90 +101,6 @@ function MoodMap() {
      })
 
    }
- 
- 
-   let handleSubmit = async (e) => {
-     e.preventDefault();
-     if(method == "post"){
-     axios.post('http://localhost:8001/add', {
-       mood: mood,
-       date: date,
-       note: note,
-       goalForToday:newgoal
-
-
-     })
-     .then((response) => {
-     
-       console.log(response);
-
-
-       console.log(response.data);
-       let newSquares = squares;
-       for(let w =0;w<squares.length;w++){
-         if(response.data.date == squares[w].date.dateString){
-          
-           newSquares[w].data = response.data
-         }
-       }
-
-       setthismood(newSquares)
-
-       var currentToCompare = newSquares.slice();
-       currentToCompare.push("");
-       currentToCompare.pop();
-       setSquares(currentToCompare);
-
-
-
-       
-
-       
-     }, (error) => {
-       console.log(error);
-     }).then(()=>{
-      console.log("done")
-     })
-   
-   }
-   else{
- 
-     axios.put('http://localhost:8001/'+id, {
-       mood: mood,
-       note: note,
-       goalForToday: newgoal
-     })
-     .then((response) => {
-      console.log(squares)
-      
-
-       console.log(response.data);
-       let newSquares = squares;
-       for(let w =0;w<squares.length;w++){
-         if(response.data.date == squares[w].date.dateString){
-          
-           newSquares[w].data = response.data
-         }
-       }
-
-       setthismood(newSquares)
-
-       var currentToCompare = newSquares.slice();
-       currentToCompare.push("");
-       currentToCompare.pop();
-       setSquares(currentToCompare);
-
-
-       
-
-
-     }, (error) => {
-       console.log(error);
-     }).then(()=>{
-       console.log("done")
-     })
- 
-   }}
  
 
   function getPast100Days(){
@@ -195,7 +144,7 @@ function MoodMap() {
      combinedArr.push(entry)
     
     }
-    console.log(combinedArr)
+   
  
     return combinedArr
   }
@@ -226,8 +175,7 @@ function MoodMap() {
       e.preventDefault();
 
       let copy = e.target
-      console.log(copy.id)
-      squareClick(copy.id)
+      squareClick(copy.id,e)
 
     }
     
@@ -235,13 +183,104 @@ function mapSquares(squares){
 
   let map = squares.map((square,index) => {
     
-console.log(square.data)
    return <Square key={index} id={square.date.dateString}  onClick={handleClick} mood={square.data.mood} classname="gridBox" date={square.date} />
   })
 return map
 }
   
 
+
+let handleSubmit = async (e) => {
+  e.preventDefault();
+  if(method == "post"){
+  axios.post('http://localhost:8001/add', {
+    mood: mood,
+    date: date,
+    note: note,
+    goalForToday:newgoal
+  })
+  .then((response) => {
+  
+    let newSquares = squares;
+    for(let w =0;w<squares.length;w++){
+      if(response.data.date == squares[w].date.dateString){
+       
+        newSquares[w].data = response.data
+      }
+    }
+
+    setthismood(newSquares)
+
+    var currentToCompare = newSquares.slice();
+    currentToCompare.push("");
+    currentToCompare.pop();
+    setSquares(currentToCompare);
+
+
+
+    
+
+    
+  }, (error) => {
+    console.log(error);
+  }).then(()=>{
+   console.log("done")
+  })
+
+}
+else{
+
+  axios.put('http://localhost:8001/'+id, {
+    mood: mood,
+    note: note,
+    goalForToday: newgoal
+  })
+  .then((response) => {
+   
+
+    let newSquares = squares;
+    for(let w =0;w<squares.length;w++){
+      if(response.data.date == squares[w].date.dateString){
+       
+        newSquares[w].data = response.data
+      }
+    }
+
+    setthismood(newSquares)
+
+    var currentToCompare = newSquares.slice();
+    currentToCompare.push("");
+    currentToCompare.pop();
+    setSquares(currentToCompare);
+
+
+    
+
+
+  }, (error) => {
+    console.log(error);
+  }).then(()=>{
+    console.log("done")
+  })
+
+}}
+
+
+function selectMood(e){
+  setmood(e.target.id)
+
+  if(!moodselection){
+  document.getElementById(e.target.id).style.boxShadow = "0px 5px 15px rgba(0, 0, 0, 0.35)";
+  setMoodselection(e.target.id)
+  }
+  else{
+    document.getElementById(moodselection).style.boxShadow = "";
+    document.getElementById(e.target.id).style.boxShadow = "0px 5px 15px rgba(0, 0, 0, 0.35)";
+    setMoodselection(e.target.id)
+  }
+
+  
+}
   
    
   return (
@@ -262,11 +301,11 @@ return map
         <form onSubmit={handleSubmit}>
           <span>Mood Hex</span>
           <div style={{display:"flex"}}>
-            <div className='hex' id="ff6961" style={{backgroundColor:"#ff6961"}}></div>
-            <div className='hex' id="ffb347" style={{backgroundColor:"#ffb347"}}></div>
-            <div className='hex' id="fdfd96" style={{backgroundColor:"#fdfd96"}}></div>
-            <div className='hex' id="c6f1c6" style={{backgroundColor:"#c6f1c6"}}></div>
-            <div className='hex' id="58d558" style={{backgroundColor:"#58d558"}}></div>
+            <div className='hex' onClick={selectMood} id="ff6961" style={{backgroundColor:"#ff6961"}}></div>
+            <div className='hex' onClick={selectMood} id="ffb347" style={{backgroundColor:"#ffb347"}}></div>
+            <div className='hex' onClick={selectMood} id="fdfd96" style={{backgroundColor:"#fdfd96"}}></div>
+            <div className='hex' onClick={selectMood} id="c6f1c6" style={{backgroundColor:"#c6f1c6"}}></div>
+            <div className='hex' onClick={selectMood} id="58d558" style={{backgroundColor:"#58d558"}}></div>
           </div>
           <br />
           <input
@@ -289,7 +328,7 @@ return map
             type="text"
             value={newgoal}
             placeholder={newgoalfill}
-            onChange={(e) => setNote(e.target.value)}
+            onChange={(e) => setNewgoal(e.target.value)}
           /> 
           <button type="submit">Create</button>
           <div className="message">{message ? <p>{message}</p> : null}</div>
