@@ -3,6 +3,21 @@ import React, { useState, useEffect } from 'react';
 import Square from '../components/Square'
 import axios from 'axios';
 
+let today 
+
+function getTodaysDate() {
+  let today = new Date();
+  let year = today.getFullYear();
+  year = year.toString();
+  let month = today.getMonth();
+  month = month + 1;
+  month = month.toString();
+  let day = today.getDate();
+  day = day.toString();
+ 
+  let date = `${month}/${day}/${year}`;
+  return date;
+}
 
 function MoodMap() {
 
@@ -42,7 +57,9 @@ const [moodselection, setMoodselection ] = useState("");
     setDate(res.data[0].date)
     }
     else{
+      today = getTodaysDate()
      setMethod("post")
+     setDate(today)
     }
    })
   }
@@ -93,6 +110,7 @@ const [moodselection, setMoodselection ] = useState("");
        setId("")
        setmood("")
        setNote("")
+       setNewgoal("")
        setmoodfill("")
        setnotefill("")
        
@@ -305,6 +323,7 @@ function deleteDay (){
     setId("")
     setmood("")
     setNote("")
+    setNewgoal("")
     setmoodfill("")
     setnotefill("")
     
@@ -354,7 +373,7 @@ function selectMood(e){
         </div>
         <br />
         <form onSubmit={handleSubmit}>
-          <span>Mood Hex</span>
+          <span>Mood</span>
           <div style={{display:"flex"}}>
             <div className='hex' onClick={selectMood} id="ff6961" style={{backgroundColor:"#ff6961"}}></div>
             <div className='hex' onClick={selectMood} id="ffb347" style={{backgroundColor:"#ffb347"}}></div>
@@ -363,12 +382,7 @@ function selectMood(e){
             <div className='hex' onClick={selectMood} id="58d558" style={{backgroundColor:"#58d558"}}></div>
           </div>
           <br />
-          <input
-            type="text"
-            value={mood}
-            placeholder={moodfill}
-            onChange={(e) => setmood(e.target.value)}
-          /> 
+         
             <br />
             <span>Notes:</span>
           <input
@@ -385,17 +399,14 @@ function selectMood(e){
             placeholder={newgoalfill}
             onChange={(e) => setNewgoal(e.target.value)}
           /> 
+          <br />
           <button type="submit">Create</button>
           <div className="message">{message ? <p>{message}</p> : null}</div>
         </form>
     <>
   
-       
     <div>
-      Today's Goals
-    </div>
-    <div>
-      Goals for Tomorrow
+      Did you complete your goal?
     </div>
     <button onClick={deleteDay}>Delete</button>
     </>
