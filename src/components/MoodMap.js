@@ -210,6 +210,8 @@ let handleSubmit = async (e) => {
     }
 
     setthismood(newSquares)
+    setId(response.data._id)
+    setMethod("put")
 
     var currentToCompare = newSquares.slice();
     currentToCompare.push("");
@@ -247,6 +249,7 @@ else{
     }
 
     setthismood(newSquares)
+  
 
     var currentToCompare = newSquares.slice();
     currentToCompare.push("");
@@ -264,6 +267,58 @@ else{
   })
 
 }}
+
+function deleteDay (){
+  axios.delete('http://localhost:8001/'+id)
+  .then((response) => {
+   
+
+    let url = "http://localhost:8001/";
+      fetch(url) //<-- the url as a string
+    // Wait for the response and convert it to json
+    .then(res => res.json())
+    // Take the json and do something with it
+    .then(json => {
+      setthismood(json)
+      let newsquares = combineDateData(dates, json)
+      setSquares(newsquares)
+      // the json parameter holds the json data
+      // so here's where you will need to
+      // use the setBirds method put the json into state
+    })
+    // Catch and log any errors to the console
+    .catch(console.error);
+    
+
+
+
+
+    setMethod("post")
+       
+    try{
+     document.getElementById(moodselection).style.boxShadow = "";
+      setMoodselection("")
+      }
+       catch(e){
+
+       }
+    setId("")
+    setmood("")
+    setNote("")
+    setmoodfill("")
+    setnotefill("")
+    
+    setDate(date)
+    
+
+
+  }, (error) => {
+    console.log(error);
+  }).then(()=>{
+    console.log("done")
+  })
+
+}
 
 
 function selectMood(e){
@@ -342,6 +397,7 @@ function selectMood(e){
     <div>
       Goals for Tomorrow
     </div>
+    <button onClick={deleteDay}>Delete</button>
     </>
   </div>
     </div>
