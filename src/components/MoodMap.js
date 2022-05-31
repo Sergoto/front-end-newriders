@@ -1,4 +1,4 @@
-import { Button, TextField } from '@mui/material';
+import { Checkbox, Button, TextField } from '@mui/material';
 import { Divider } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import Square from '../components/Square'
@@ -447,11 +447,12 @@ const handleChange = () => {
           <br />
           <label>
     Did you complete the goal?
-        <input
-          type="checkbox"
-          checked={checked}
-          onChange={handleChange}
-        />
+     
+        <Checkbox
+  checked={checked}
+  onChange={handleChange}
+  inputProps={{ 'aria-label': 'controlled' }}
+/>
      
       </label>
 
