@@ -7,13 +7,17 @@ import Main from './components/Main';
 import MoodMap from './components/MoodMap';
 import Navbar from './components/Navbar';
 import Button from '@mui/material/Button';
-import Grid from "@mui/material/Grid";
+import { Box, Stack } from '@mui/material';
 
 function App() {
   return (
-    <div className="App">
+    <Box className="App">
+      <TopBar/>
+      <Stack direction="row" spacing={2} justifyContent="space-between">
       <Navbar />
-    </div>
+        <Main/>
+       </Stack>
+    </Box>
   );
 }
 
