@@ -4,6 +4,8 @@
   flex-direction: column;
   min-height: 100vh;
   color: #000133;
+  background-color: #FCF4E3;
+
 }
 
 #mainCon{
@@ -67,3 +69,15 @@ width: fit-content;
 padding:10ch;
 border: 1px solid black;
 }
+
+.navbar-logo {
+  color: slateblue;
+  justify-self: start;
+  margin-left: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+

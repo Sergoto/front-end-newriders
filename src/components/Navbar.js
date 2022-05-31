@@ -17,6 +17,7 @@ import Typography from "@mui/material/Typography";
 import { mainNavBarItems } from "./Consts/NavbarItems";
 import { bottomNavBarItems } from "./Consts/NavbarItems";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import MoodMap from "./MoodMap";
 import Entry from "./Entry";
 import Main from "./Main";
@@ -33,8 +34,26 @@ function ResponsiveDrawer(props) {
 
   const drawer = (
     <div>
-      <Toolbar />
+      {/* <Toolbar />
+      <Typography className="navbar-container">
+        <Link to="/" className="navbar-logo">
+         <i class="fa-brands fa-magento"></i>
+          Mind Over Matter 
+        </Link>
+      </Typography>
+      <Divider /> */}
+
+           <Toolbar>
+         <Typography>
+            <img
+              src="https://i.imgur.com/qg770Cq.png"
+              width={225}
+              height={135}
+            />
+          </Typography>
+      </Toolbar>
       <Divider />
+      
       <List>
         {mainNavBarItems.map((item, index) => (
           <ListItem key={item.id} onClick={() => navigate(item.route)}>
@@ -65,7 +84,16 @@ function ResponsiveDrawer(props) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar
+      <IconButton
+        color="inherit"
+        aria-label="open drawer"
+        edge="start"
+        onClick={handleDrawerToggle}
+        sx={{ mr: 2, display: { sm: "none" } }}
+      >
+        <MenuIcon />
+      </IconButton>
+      {/* <AppBar
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
@@ -77,15 +105,6 @@ function ResponsiveDrawer(props) {
         }}
       >
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography
             variant="h6"
             noWrap
@@ -96,7 +115,7 @@ function ResponsiveDrawer(props) {
             Welcome User, random Zen message of the day
           </Typography>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
@@ -145,7 +164,6 @@ function ResponsiveDrawer(props) {
         }}
       >
         <Toolbar />
-        <Main />
       </Box>
     </Box>
   );

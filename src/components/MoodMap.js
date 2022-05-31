@@ -1,4 +1,5 @@
 import { Grid } from '@mui/material';
+import { Divider } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import Square from '../components/Square'
 import axios from 'axios';
@@ -361,6 +362,8 @@ function selectMood(e){
     <div id="mainCon">
       <div className='cards' >
         <h4>100 Day Mood Map</h4>
+        <Divider />
+        <br/>
         <div id="gridContainer" >
           {mapSquares(squares)}
         </div>
@@ -382,9 +385,10 @@ function selectMood(e){
             <div className='hex' onClick={selectMood} id="58d558" style={{backgroundColor:"#58d558"}}></div>
           </div>
           <br />
-         
+         <Divider/>
             <br />
-            <span>Notes:</span>
+          <span>Notes:</span>
+          <br/>
           <input
             type="text"
             value={note}
@@ -393,12 +397,16 @@ function selectMood(e){
           /> 
           <br />
           <span>Goals for today:</span>
+          <br/>
           <input
             type="text"
             value={newgoal}
             placeholder={newgoalfill}
             onChange={(e) => setNewgoal(e.target.value)}
           /> 
+          <br/>
+          <br/>
+          <Divider/>
           <br />
           <button type="submit">Create</button>
           <div className="message">{message ? <p>{message}</p> : null}</div>
