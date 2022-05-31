@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import { Divider } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import Square from '../components/Square'
@@ -22,7 +22,8 @@ function getTodaysDate() {
 
 function MoodMap() {
 
-  
+  const [checked, setChecked] = useState(false);
+
 const [moodselection, setMoodselection ] = useState("");
 
   const [message, setMessage] = useState("");
@@ -39,6 +40,8 @@ const [moodselection, setMoodselection ] = useState("");
   const [notefill, setnotefill ] = useState("");
   const [squares, setSquares ] = useState([]);
 
+  const [buttonMessage, setbuttonMessage ] = useState("");
+
   function getToday(){
   axios.get('http://localhost:8001/today').then((res)=>{
     console.log(res.data.length)
@@ -46,10 +49,13 @@ const [moodselection, setMoodselection ] = useState("");
       setId(res.data[0]._id)
       setNote(res.data[0].note)
       setNewgoal(res.data[0].goalForToday)
+      setnewgoalfill(res.data[0].goalForToday)
       setMethod("put")
       setmood(res.data[0].mood)
       setmoodfill(res.data[0].mood)
       setnotefill(res.data[0].note)
+      setChecked(res.data[0].goalDone)
+      setbuttonMessage("Update Entry")
 
       setMoodselection(res.data[0].mood)
       document.getElementById(res.data[0].mood).style.boxShadow = "0px 5px 15px rgba(0, 0, 0, 0.35)";
@@ -60,6 +66,7 @@ const [moodselection, setMoodselection ] = useState("");
     else{
       today = getTodaysDate()
      setMethod("post")
+     setbuttonMessage("Create Entry")
      setDate(today)
     }
    })
@@ -76,6 +83,10 @@ const [moodselection, setMoodselection ] = useState("");
         setNote(res.data[0].note)
         setmoodfill(res.data[0].mood)
         setnotefill(res.data[0].note)
+        setnewgoalfill(res.data[0].goalForToday)
+        setNewgoal(res.data[0].goalForToday)
+        setChecked(res.data[0].goalDone)
+        setbuttonMessage("Update Entry")
 
         
         setMoodselection(res.data[0].mood)
@@ -100,6 +111,7 @@ const [moodselection, setMoodselection ] = useState("");
       }
       else{
        setMethod("post")
+       setbuttonMessage("Create Entry")
        
        try{
         document.getElementById(moodselection).style.boxShadow = "";
@@ -114,6 +126,8 @@ const [moodselection, setMoodselection ] = useState("");
        setNewgoal("")
        setmoodfill("")
        setnotefill("")
+       setnewgoalfill("")
+       setChecked(false)
        
        setDate(date)
       }
@@ -216,7 +230,8 @@ let handleSubmit = async (e) => {
     mood: mood,
     date: date,
     note: note,
-    goalForToday:newgoal
+    goalForToday:newgoal,
+    goalDone:checked
   })
   .then((response) => {
   
@@ -231,6 +246,7 @@ let handleSubmit = async (e) => {
     setthismood(newSquares)
     setId(response.data._id)
     setMethod("put")
+    setbuttonMessage("Update Entry")
 
     var currentToCompare = newSquares.slice();
     currentToCompare.push("");
@@ -254,7 +270,10 @@ else{
   axios.put('http://localhost:8001/'+id, {
     mood: mood,
     note: note,
-    goalForToday: newgoal
+    goalForToday: newgoal,
+    goalForToday:newgoal,
+    goalDone:checked
+
   })
   .then((response) => {
    
@@ -327,6 +346,9 @@ function deleteDay (){
     setNewgoal("")
     setmoodfill("")
     setnotefill("")
+    setnewgoalfill("")
+    setChecked(false)
+    setbuttonMessage("Create Entry")
     
     setDate(date)
     
@@ -356,6 +378,10 @@ function selectMood(e){
 
   
 }
+
+const handleChange = () => {
+  setChecked(!checked);
+};
   
    
   return (
@@ -389,34 +415,59 @@ function selectMood(e){
             <br />
           <span>Notes:</span>
           <br/>
-          <input
-            type="text"
-            value={note}
-            placeholder={notefill}
-            onChange={(e) => setNote(e.target.value)}
-          /> 
+
+          <TextField
+          id="outlined-multiline-static"
+          label="Notes"
+          multiline
+          rows={2}
+          defaultValue="Default Value"
+
+          value={note}
+          placeholder={notefill}
+          onChange={(e) => setNote(e.target.value)}
+        />
+          
           <br />
-          <span>Goals for today:</span>
+          <br />
+
+          <TextField
+          id="outlined-multiline-static"
+          label="Goals for today"
+          multiline
+          rows={2}
+          defaultValue="Default Value"
+
+          value={newgoal}
+          placeholder={newgoalfill}
+          onChange={(e) => setNewgoal(e.target.value)}
+        />
+
           <br/>
-          <input
-            type="text"
-            value={newgoal}
-            placeholder={newgoalfill}
-            onChange={(e) => setNewgoal(e.target.value)}
-          /> 
-          <br/>
+          <br />
+          <label>
+    Did you complete the goal?
+        <input
+          type="checkbox"
+          checked={checked}
+          onChange={handleChange}
+        />
+     
+      </label>
+
           <br/>
           <Divider/>
           <br />
-          <button type="submit">Create</button>
-          <div className="message">{message ? <p>{message}</p> : null}</div>
+          <Button type="submit"  variant='outlined'
+  sx={{ color: 'black', backgroundColor: 'white', borderColor: 'purple' }}>{buttonMessage}</Button>
+          
         </form>
     <>
-  
-    <div>
-      Did you complete your goal?
-    </div>
-    <button onClick={deleteDay}>Delete</button>
+
+    <br />
+    <Button  variant='outlined'
+  sx={{ color: 'red', backgroundColor: 'white', borderColor: 'purple' }} onClick={deleteDay}>Delete</Button>
+ 
     </>
   </div>
     </div>
