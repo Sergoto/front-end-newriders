@@ -8,8 +8,9 @@ import MoodMap from './components/MoodMap';
 import Navbar from './components/Navbar';
 import Button from '@mui/material/Button';
 import { Box, Stack } from '@mui/material';
-import TAP from "./components/TAP"
+import TAP from "./components/TAP/TAP"
 import Animal from './components/Animal'
+import Resources from './components/Resources';
 
 
 
@@ -25,6 +26,7 @@ function App() {
            <Routes>
     <Route path="/" element={<Main/>}/>
     <Route path="/tap" element={<TAP/>}/>
+    <Route path="/resources" element={<Resources/>}/>
     <Route path="/animals" element={<Animal/>}/>
     </Routes>
        </Stack>
