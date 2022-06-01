@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import Square from '../components/Square'
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+
 let today 
 
 function getTodaysDate() {
@@ -41,10 +43,11 @@ const [moodselection, setMoodselection ] = useState("");
   const [squares, setSquares ] = useState([]);
 
   const [buttonMessage, setbuttonMessage ] = useState("");
+  
 
   function getToday(){
   axios.get('http://localhost:8001/today').then((res)=>{
-    console.log(res.data.length)
+    console.log(res.data.user)
     if(res.data.length>0){
       setId(res.data[0]._id)
       setNote(res.data[0].note)
@@ -188,11 +191,12 @@ const [moodselection, setMoodselection ] = useState("");
     useEffect(() => {
       getToday()
       let url = "http://localhost:8001/";
-      fetch(url) //<-- the url as a string
+      fetch(url, {'credentials': 'include'},) //<-- the url as a string
     // Wait for the response and convert it to json
     .then(res => res.json())
     // Take the json and do something with it
     .then(json => {
+      console.log(json)
       setthismood(json)
       let newsquares = combineDateData(dates, json)
       setSquares(newsquares)

@@ -1,6 +1,6 @@
 import 'bootswatch/dist/pulse/bootstrap.min.css';
 import './App.css';
-import { Routes, Route, Link, Switch } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import TopBar from "./components/TopBar"
 import Main from './components/Main';
 import MoodMap from './components/MoodMap';
@@ -47,11 +47,22 @@ function App() {
 
   return (
     <AppContext.Provider value={userSettings}>
-    <div>
         
 	 
-    {loggedIn ? (
-      <p>Login success</p>
+    {loggedIn ? 
+    (
+         <Box className="App">
+         <TopBar/>
+         <Stack direction="row" spacing={2} justifyContent="space-between">
+         <Navbar />
+           
+              <Routes>
+       <Route path="/" element={<Main/>}/>
+       <Route path="/tap" element={<TAP/>}/>
+       <Route path="/animals" element={<Animal/>}/>
+       </Routes>
+          </Stack>
+       </Box>
     ) : (
       <div>
 
@@ -64,11 +75,12 @@ function App() {
       </div>
     )}
        <Routes>
-       <Route  path="/" element={<Register />}/>
+       <Route  path="/" element={<></>}/>
+   
        <Route  path="/register" element={<Register />}/>
        <Route  path="/login" element={<Login onChange={handleChange}/>}/>    
         </Routes>
-  </div>
+
   </AppContext.Provider>
   );
 }

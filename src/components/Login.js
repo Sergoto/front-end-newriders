@@ -9,6 +9,7 @@ import AppContext from "./AppContext";
 axios.defaults.withCredentials = true;
 
 function Login() {
+    
 
     const myContext = useContext(AppContext);
     const nav = useNavigate();
@@ -32,6 +33,8 @@ let handleSubmit = async (e) => {
          axios.get('http://localhost:8001/checkAuthentication')
          .then(res => {
             myContext.setLoggedIn(res.data.authenticated);
+            nav("/");
+            
          })
          .catch((error) => {
             myContext.setLoggedIn(false)
