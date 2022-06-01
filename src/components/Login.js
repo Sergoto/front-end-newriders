@@ -2,14 +2,23 @@
 import React, { useState, useEffect } from 'react';
 import { Button, TextField } from '@mui/material';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
+import { useContext } from "react";
+import AppContext from "./AppContext";
 axios.defaults.withCredentials = true;
 
 function Login() {
+
+    const myContext = useContext(AppContext);
+    const nav = useNavigate();
+
+    
     
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  
   
 let handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,13 +26,31 @@ let handleSubmit = async (e) => {
     axios.post('http://localhost:8001/login' , {
       username: username,
       password: password,
-     }).then((res)=>console.log(res))
+     }).then((res)=>{
+         console.log(res);
+         
+         axios.get('http://localhost:8001/checkAuthentication')
+         .then(res => {
+            myContext.setLoggedIn(res.data.authenticated);
+         })
+         .catch((error) => {
+            myContext.setLoggedIn(false)
+       });
+
+
+         
+        
+     
+})
      }
+
+     function handlechange(){
+
+     };
      
 
   return (
     <div>Login
-
 <form onSubmit={handleSubmit}>
      
           <br/>
@@ -48,7 +75,7 @@ let handleSubmit = async (e) => {
         />
 
           <br />
-          <Button type="submit"  variant='outlined'
+          <Button onChange={handlechange} type="submit"  variant='outlined'
   sx={{ color: 'black', backgroundColor: 'white', borderColor: 'purple' }}>Submit</Button>
           
         </form>
@@ -57,3 +84,5 @@ let handleSubmit = async (e) => {
 }
 
 export default Login
+
+

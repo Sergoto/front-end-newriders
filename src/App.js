@@ -13,6 +13,7 @@ import Animal from './components/Animal'
 import Login from './components/Login';
 import Register from './components/Register';
 
+import AppContext from './components/AppContext';
 
 
 import React, { useEffect, useState } from 'react';
@@ -20,8 +21,15 @@ import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 function App() {
-
+  
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const userSettings = {
+    loggedIn: loggedIn,
+    setLoggedIn,
+  };
+
+
 
   useEffect(() => {
     axios.get('http://localhost:8001/checkAuthentication')
@@ -33,7 +41,12 @@ function App() {
     });
   }, []);
 
+  function handleChange(){
+ 
+  }
+
   return (
+    <AppContext.Provider value={userSettings}>
     <div>
         
 	 
@@ -53,9 +66,10 @@ function App() {
        <Routes>
        <Route  path="/" element={<Register />}/>
        <Route  path="/register" element={<Register />}/>
-       <Route  path="/login" element={<Login />}/>    
+       <Route  path="/login" element={<Login onChange={handleChange}/>}/>    
         </Routes>
   </div>
+  </AppContext.Provider>
   );
 }
 
