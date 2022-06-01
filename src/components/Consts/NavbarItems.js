@@ -10,13 +10,7 @@ export const mainNavBarItems = [
     id: 0,
     icon: <CottageIcon />,
     label: "Home",
-    route: "home",
-  },
-  {
-    id: 1,
-    icon: <MenuBookIcon />,
-    label: "Journal",
-    route: "journal",
+    route: "/",
   },
   {
     id: 2,
@@ -37,12 +31,12 @@ export const bottomNavBarItems = [
     id: 4,
     icon: <GroupsIcon />,
     label: "Our Team",
-    route: "our-team",
+    route: "about",
   },
   {
     id: 5,
     icon: <SettingsIcon />,
-    label: "Settings",
-    route: "settings",
+    label: "Logout",
+    route: "Logout",
   },
 ];

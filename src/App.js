@@ -10,6 +10,7 @@ import { Box, Stack } from '@mui/material';
 import TAP from "./components/TAP/TAP"
 import Animal from './components/Animal'
 import Resources from './components/Resources';
+import About from './components/About';
 import Login from './components/Login';
 import Register from './components/Register';
 import AppContext from './components/AppContext';
@@ -76,6 +77,7 @@ function App() {
        <Route path="/" element={<Main/>}/>
        <Route path="/tap" element={<TAP/>}/>
        <Route path="/animals" element={<Animal/>}/>
+       <Route path="/about" element={<About/>}/>
        </Routes>
           </Stack>
        </Box>
