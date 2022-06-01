@@ -47,10 +47,7 @@ let handleSubmit = async (e) => {
 })
      }
 
-     function handlechange(){
 
-     };
-     
 
   return (
     <div>Login
@@ -78,7 +75,7 @@ let handleSubmit = async (e) => {
         />
 
           <br />
-          <Button onChange={handlechange} type="submit"  variant='outlined'
+          <Button type="submit"  variant='outlined'
   sx={{ color: 'black', backgroundColor: 'white', borderColor: 'purple' }}>Submit</Button>
           
         </form>
