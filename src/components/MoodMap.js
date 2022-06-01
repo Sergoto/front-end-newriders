@@ -3,6 +3,9 @@ import { Divider } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import Square from '../components/Square'
 import axios from 'axios';
+import AppContext from "./AppContext";
+
+import { useContext } from "react";
 
 axios.defaults.withCredentials = true;
 
@@ -23,6 +26,9 @@ function getTodaysDate() {
 }
 
 function MoodMap() {
+
+  const myContext = useContext(AppContext);
+
 
   const [checked, setChecked] = useState(false);
 
@@ -231,6 +237,7 @@ let handleSubmit = async (e) => {
   e.preventDefault();
   if(method == "post"){
   axios.post('http://localhost:8001/add', {
+    user: myContext.user,
     mood: mood,
     date: date,
     note: note,
@@ -316,7 +323,7 @@ function deleteDay (){
    
 
     let url = "http://localhost:8001/";
-      fetch(url) //<-- the url as a string
+      fetch(url,{'credentials': 'include'}) //<-- the url as a string
     // Wait for the response and convert it to json
     .then(res => res.json())
     // Take the json and do something with it

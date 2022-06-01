@@ -23,15 +23,34 @@ axios.defaults.withCredentials = true;
 function App() {
   
   const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setuser] = useState("");
 
   const userSettings = {
     loggedIn: loggedIn,
+    user:user,
+    setuser,
     setLoggedIn,
   };
 
 
+  axios.get('http://localhost:8001/user')
+  .then(res => {
+    console.log(res.data._id)
+    if(res.data._id){
+    setuser(res.data._id);
+    }
+  })
+  .catch((error) => {
+    setuser("")
+});
+
 
   useEffect(() => {
+
+   
+
+
+
     axios.get('http://localhost:8001/checkAuthentication')
       .then(res => {
         setLoggedIn(res.data.authenticated);
