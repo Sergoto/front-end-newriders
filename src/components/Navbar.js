@@ -23,7 +23,7 @@ import Entry from "./Entry";
 import Main from "./Main";
 
 function ResponsiveDrawer(props) {
-  const drawerWidth = 240;
+  const drawerWidth = 200;
   const navigate = useNavigate();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);

@@ -5,7 +5,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 
 function TopBar() {
-    const drawerWidth = 240;
+    const drawerWidth = 100;
     // const handleDrawerToggle = () => {
     //   setMobileOpen(!mobileOpen);
     // };

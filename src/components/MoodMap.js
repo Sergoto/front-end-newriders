@@ -421,7 +421,6 @@ const handleChange = () => {
           label="Notes"
           multiline
           rows={2}
-          defaultValue="Default Value"
 
           value={note}
           placeholder={notefill}
@@ -436,7 +435,6 @@ const handleChange = () => {
           label="Goals for today"
           multiline
           rows={2}
-          defaultValue="Default Value"
 
           value={newgoal}
           placeholder={newgoalfill}
