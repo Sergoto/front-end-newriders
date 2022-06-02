@@ -5,14 +5,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 
 function TopBar() {
-    const drawerWidth = 200;
-    // const handleDrawerToggle = () => {
-    //   setMobileOpen(!mobileOpen);
-    // };
-    //  const navigate = useNavigate();
-    //  const { window } = props;
-    //  const [mobileOpen, setMobileOpen] = React.useState(false);
-    
+    const drawerWidth = 150;
     return (
       <AppBar
         position="sticky"
@@ -26,23 +19,16 @@ function TopBar() {
         }}
       >
         <Toolbar>
-          {/* <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton> */}
           <Typography
             variant="h6"
             noWrap
             component="div"
+            fontFamily='Roboto'
+            fontSize="1.1rem"
             sx={{ color: "black", alignItems: "center" }}
           >
             {" "}
-            Welcome User, random Zen message of the day
+            Welcome to Mind Over Matter, Your Mental Health Tracker
           </Typography>
         </Toolbar>
       </AppBar>

@@ -93,3 +93,141 @@ border: 1px solid black;
   margin: 0 auto;
   text-align: center;
 }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(
+    90deg,
+    rgba(48, 16, 255, 1) 0%,
+    rgba(100, 115, 255, 1) 100%
+  );
+}
+
+h1 {
+  margin: 32px 0;
+  color: black;
+  font-size: 30px;
+}
+
+.complete {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+
+.todo-form {
+  margin-bottom: 32px;
+}
+
+.todo-input {
+  padding: 14px 32px 14px 16px;
+  border-radius: 4px 0 0 4px;
+  border: 2px solid #ACDFE6;
+  outline: none;
+  width: 320px;
+  background: transparent;
+  color: slategray
+}
+
+.todo-input::placeholder {
+  color: slategray;
+}
+
+.todo-button {
+  padding: 16px;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  outline: none;
+  background: linear-gradient(
+    90deg,
+   #ACDFE6 0%,
+   #DEEDD5 100%
+  );
+  color: slategray;
+  text-transform: capitalize;
+}
+
+.todo-input.edit {
+  border: 2px solid #B9EAEA;
+}
+
+.todo-button.edit {
+  background: linear-gradient(
+    90deg,
+    #AAC8FA 0%,
+    #BAD8FF 100%
+  );
+  padding: 16px 22px;
+}
+
+.todo-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.todo-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px auto;
+  color: black;
+  font-weight: bold; 
+  font-style: oblique; 
+  background: linear-gradient(
+    90deg,
+    #B9EAEA 0%,
+    #DCF5E8 100%
+  );
+
+  padding: 16px;
+  border-radius: 5px;
+  width: 90%;
+}
+
+.todo-row:nth-child(4n + 1) {
+  background: linear-gradient(
+    90deg,
+    #C2E7FF 0%,
+    #BAD8FF 100%
+  );
+}
+
+.todo-row:nth-child(4n + 2) {
+  background: linear-gradient(
+    90deg,
+    #FFB5B5 0%,
+    #FFCFCF 100%
+  );
+}
+
+.todo-row:nth-child(4n + 3) {
+  background: linear-gradient(
+    90deg,
+    #CBA6CC 0%,
+    #A09BCC 100%
+  );
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.delete-icon {
+  margin-right: 5px;
+  color: #fff;
+}
+
+.edit-icon {
+  color: #fff;
+}

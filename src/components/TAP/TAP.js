@@ -4,7 +4,7 @@ import TAPList from './TAPList'
 
 function TAP() {
   return (
-    <div className='container tap-list'>
+    <div className='tap'>
       <TAPList/>
     </div>
   )
