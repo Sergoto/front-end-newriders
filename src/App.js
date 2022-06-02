@@ -14,6 +14,7 @@ import About from './components/About';
 import Login from './components/Login';
 import Register from './components/Register';
 import AppContext from './components/AppContext';
+import Logout from './components/Logout';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 axios.defaults.withCredentials = true;
@@ -78,6 +79,7 @@ function App() {
        <Route path="/tap" element={<TAP/>}/>
        <Route path="/animals" element={<Animal/>}/>
        <Route path="/about" element={<About/>}/>
+       <Route path="/logout" element={<Logout/>}/>
        </Routes>
           </Stack>
        </Box>
