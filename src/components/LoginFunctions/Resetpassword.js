@@ -31,53 +31,61 @@ function Resetpassword() {
      }
 
   return (
-    <div>
-      Change Password
-      <form onSubmit={handleSubmit}>
-        <br />
+    <div className="form-container">
+      <div className="form-content-left">
+        <img className="form-img" src="https://i.imgur.com/hPOPqz3.jpg"></img>
+      </div>
+      <div className="form-content-right">
+        <h1 className="title">Reset Password</h1>
+        <form onSubmit={handleSubmit}>
+          <br />
 
-        <TextField
-          id="outlined-static"
-          label="Username"
-          value={username}
-          placeholder="Username"
-          onChange={(e) => setUsername(e.target.value)}
-        />
+          <TextField
+            className="form-inputs"
+            id="outlined-static"
+            label="Username"
+            value={username}
+            placeholder="Username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
 
-        <br />
+          <br />
+          <br/>
+          <TextField
+            className="form-inputs"
+            id="outlined-static"
+            label="Old Password"
+            value={oldpassword}
+            placeholder="Old Password"
+            onChange={(e) => setOldpassword(e.target.value)}
+          />
+          <br />
+          <br/>
+          <TextField
+            className="form-inputs"
+            id="outlined-static"
+            label="New Password"
+            value={newpassword}
+            placeholder="New Password"
+            onChange={(e) => setNewpassword(e.target.value)}
+          />
 
-        <TextField
-          id="outlined-static"
-          label="Old Password"
-          value={oldpassword}
-          placeholder="Old Password"
-          onChange={(e) => setOldpassword(e.target.value)}
-        />
-        <br />
-
-        <TextField
-          id="outlined-static"
-          label="New Password"
-          value={newpassword}
-          placeholder="New Password"
-          onChange={(e) => setNewpassword(e.target.value)}
-        />
-
-        <br />
-        <Button
-          type="submit"
-          variant="outlined"
-          sx={{
-            color: "black",
-            backgroundColor: "white",
-            borderColor: "purple",
-          }}
-        >
-          Submit
-        </Button>
-      </form>
-      <div className="container">
-        <img src="https://i.imgur.com/hPOPqz3.jpg"></img>
+          <br />
+          <button className="form-input-btn" type="submit">
+            Submit
+          </button>
+          {/* <Button
+            type="submit"
+            variant="outlined"
+            sx={{
+              color: "black",
+              backgroundColor: "white",
+              borderColor: "purple",
+            }}
+          >
+            Submit
+          </Button> */}
+        </form>
       </div>
     </div>
   );

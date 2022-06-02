@@ -26,34 +26,42 @@ function Forgotuser() {
      }
 
   return (
-    <div className="container">
-      <h1>Forgot Username</h1>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          id="outlined-static"
-          label="Email"
-          value={email}
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <br />
-        <Button
-          type="submit"
-          variant="outlined"
-          sx={{
-            color: "black",
-            backgroundColor: "white",
-            borderColor: "purple",
-          }}
-        >
-          Submit
-        </Button>
-      </form>
-      <div className="container">
-        <img src="https://i.imgur.com/hPOPqz3.jpg"></img>
+    <div className="form-container">
+      <div className="form-content-left">
+        <img className="form-img" src="https://i.imgur.com/hPOPqz3.jpg"></img>
       </div>
-      <Temppassword />
+      <div className="form-content-right">
+        <h1 className="title">Forgot Username</h1>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            className="form-inputs"
+            id="outlined-static"
+            label="Email"
+            value={email}
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <br />
+          <button className="form-input-btn" type="submit">
+            Log In
+          </button>
+          {/* <Button
+            className="form-inputs"
+            type="submit"
+            variant="outlined"
+            sx={{
+              color: "black",
+              backgroundColor: "white",
+              borderColor: "purple",
+            }}
+          >
+            Submit
+          </Button> */}
+        </form>
+        <br />
+        <Temppassword />
+      </div>
     </div>
   );
 }

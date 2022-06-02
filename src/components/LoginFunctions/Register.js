@@ -43,51 +43,64 @@ let handleSubmit = async (e) => {
    
 
 return (
-  <div className='container'>
-  <h1>Register</h1>
-    <form onSubmit={handleSubmit}>
-      <br />
-
-      <TextField
-        id="outlined-static"
-        label="Username"
-        value={username}
-        placeholder="Username"
-        onChange={(e) => setUsername(e.target.value)}
-      />
-
-      <br />
-
-      <TextField
-        id="outlined-static"
-        label="Email"
-        value={email}
-        placeholder="Email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-
-      <br />
-
-      <TextField
-        id="outlined-static"
-        label="password"
-        value={password}
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-
-      <br />
-      <Button
-        type="submit"
-        variant="outlined"
-        sx={{ color: "black", backgroundColor: "white", borderColor: "purple" }}
-      >
-        Submit
-      </Button>
-    </form>
-    <div className="container">
-      <img src="https://i.imgur.com/hPOPqz3.jpg"></img>
+  <div className="form-container">
+    <div className="form-content-left">
+      <img className="form-img" src="https://i.imgur.com/hPOPqz3.jpg"></img>
     </div>
+    <div className="form-content-right">
+      <h1 className="title">Register</h1>
+      <form onSubmit={handleSubmit}>
+        <br />
+        <div>
+        <div>
+        <TextField
+          className="form-inputs"
+          id="outlined-static"
+          label="Username"
+          value={username}
+          placeholder="Username"
+          onChange={(e) => setUsername(e.target.value)}
+          />
+          </div>
+        <br />
+        <div>
+        <TextField
+          className="form-inputs"
+          id="outlined-static"
+          label="Email"
+          value={email}
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+            <br />
+            <br/>
+          </div>
+        <TextField
+          className="form-inputs"
+          id="outlined-static"
+          label="password"
+          value={password}
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+          />
+          <br/>
+    </div>
+     <button className="form-input-btn" type="submit">
+            Submit
+          </button>
+        {/* <Button
+          type="submit"
+          variant="outlined"
+          sx={{
+            color: "black",
+            backgroundColor: "white",
+            borderColor: "purple",
+          }}
+        >
+          Submit
+        </Button> */}
+      </form>
+    </div >
   </div>
 );
 }

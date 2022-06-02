@@ -28,12 +28,13 @@ function Temppassword() {
      }
 
   return (
-    <div className="container">
-      Reset to temporary password
+    <div className="">
+      <h1>Reset to temporary password</h1>
       <form onSubmit={handleSubmit}>
         <br />
 
         <TextField
+          className="form-inputs"
           id="outlined-static"
           label="Username"
           value={username}
@@ -44,6 +45,7 @@ function Temppassword() {
         <br />
 
         <TextField
+          className="form-inputs"
           id="outlined-static"
           label="Email"
           value={email}
@@ -52,7 +54,10 @@ function Temppassword() {
         />
 
         <br />
-        <Button
+        <button className="form-input-btn" type="submit">
+          Log In
+        </button>
+        {/* <Button
           type="submit"
           variant="outlined"
           sx={{
@@ -62,11 +67,8 @@ function Temppassword() {
           }}
         >
           Submit
-        </Button>
+        </Button> */}
       </form>
-      <div className="container">
-        <img src="https://i.imgur.com/hPOPqz3.jpg"></img>
-      </div>
     </div>
   );
 }

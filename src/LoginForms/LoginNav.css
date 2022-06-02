@@ -1,8 +1,187 @@
+.home-container {
+  background: url('https://i.imgur.com/hPOPqz3.jpg') center center/cover no-repeat;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  box-shadow: inset 0 0 0 1000px rgba(51, 74, 55, 0.3);
+  object-fit: contain;
+}
+
+.home-h1 {
+  color: whitesmoke;
+  font-size: 105px;
+  margin-top: 100px;
+}
+
+.home-h3 {
+  color: whitesmoke;
+  text-align: center;
+  justify-content: center;
+  margin: 25px;
+}
+
+.home-btn {
+  width: 34%;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    #ACDFE6 0%,
+    #DEEDD5 100%
+  );
+  outline: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.home-body {
+  background-color: #ffffff;
+}
+
+.form-container {
+  margin: 100px auto;
+  width: 1200px;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  border-radius: 10px;
+  height: 600px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  
+}
+
+.form-content-left {
+  border-radius: 10px 0 0 10px;
+  position: relative;
+}
+
+.form-img {
+  width: 100%;
+  height: 100%;
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.form-success {
+  text-align: center;
+  font-size: 24px;
+  margin-top: 80px;
+  color: #fff;
+}
+
+.form-content-right {
+  border-radius: 0 10px 10px 0;
+  background-color: #fff;
+  position: relative;
+}
+
+.form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form h1 {
+  font-size: 1rem;
+  text-align: start;
+  width: 80%;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.form-inputs {
+  margin-bottom: 0.5rem;
+  width: 80%;
+}
+
+.form-inputs p {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  color: #f00e0e;
+}
+
+.form-label {
+  display: inline-block;
+  font-size: 0.8rem;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.form-input {
+  display: block;
+  padding-left: 10px;
+  outline: none;
+  border-radius: 2px;
+  height: 40px;
+  width: 100%;
+  border: none;
+}
+
+.form-input::placeholder {
+  color: #595959;
+  font-size: 12px;
+}
+
+.form-input-btn {
+  width: 64%;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    #DF9881 0%,
+    #F2D7B4 100%
+  );
+  outline: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.form-input-btn:hover {
+  cursor: pointer;
+  background: linear-gradient(
+    90deg,
+    #ECE6D2 0%,
+    #DF9881 100%
+  );
+  transition: all 0.4s ease-out;
+}
+
+.form-input-login {
+  font-size: 0.8rem;
+  margin-top: 10px;
+  color: #fff;
+  width: 80%;
+  text-align: center;
+}
+
+.form-input-login a {
+  text-decoration: none;
+  color: #27cdff;
+  font-weight: 600;
+}
+
 .navbar {
-  background: #ACDFE6;
+  background: #A6DAD9; ;
   height: 100px;
   display: flex;
-  justify-content: center;
+  justify-content:flex-end;
   align-items: center;
   font-size: 1.2rem;
   position: sticky;
@@ -18,19 +197,15 @@
 }
 
 .navbar-logo {
-  color: #fff;
+  color: #FFFFFA;
   justify-self: start;
   margin-left: 20px;
   cursor: pointer;
   text-decoration: none;
-  font-size: 2rem;
+  font-weight: bold;
+  font-size: 2.5rem;
   display: flex;
   align-items: center;
-}
-
-.fa-typo3 {
-  margin-left: 0.5rem;
-  font-size: 1.8rem;
 }
 
 .nav-menu {
@@ -49,7 +224,7 @@
 }
 
 .nav-links {
-  color: #fff;
+  color: #FFFFFA;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -60,10 +235,6 @@
 .nav-links:hover {
   border-bottom: 4px solid #fff;
   transition: all 0.2s ease-out;
-}
-
-.fa-bars {
-  color: #fff;
 }
 
 .nav-links-mobile {
@@ -83,9 +254,9 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 50vh;
+    height: 60vh;
     position: absolute;
-    top: 80px;
+    top: 100px;
     right: -100%;
     opacity: 1;
     transition: all 0.5s ease;
@@ -107,7 +278,7 @@
   }
 
   .nav-links:hover {
-    background-color: #fff;
+    background-color: #FFFFFA;
     color: #242424;
     border-radius: 0;
   }
@@ -129,11 +300,6 @@
     cursor: pointer;
   }
 
-  .fa-times {
-    color: #fff;
-    font-size: 2rem;
-  }
-
   .nav-links-mobile {
     display: block;
     text-align: center;
@@ -143,14 +309,14 @@
     text-decoration: none;
     font-size: 1.5rem;
     background-color: transparent;
-    color: #fff;
+    color: #FFFFFA;
     padding: 14px 20px;
     border: 1px solid #fff;
     transition: all 0.3s ease-out;
   }
 
   .nav-links-mobile:hover {
-    background: #fff;
+    background: #FFFFFA;
     color: #242424;
     transition: 250ms;
   }
