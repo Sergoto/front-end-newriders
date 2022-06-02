@@ -14,13 +14,15 @@ import About from './components/About';
 import Login from './components/Login';
 import Register from './components/Register';
 import AppContext from './components/AppContext';
-import Resetpassword from './components/Resetpassword';
+import Temppassword from './components/Temppassword';
 import Resetconfirmed from './components/Resetconfirmed';
 import Forgotuser from './components/Forgotuser';
+import Resetconfirmed2 from './components/Resetconfirmed2';
 import Usernameconfirm from './components/Usernameconfirm';
 import Logout from './components/Logout';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Resetpassword from './components/Resetpassword';
 axios.defaults.withCredentials = true;
 
 function App() {
@@ -102,14 +104,19 @@ function App() {
         <Link to="/forgotuser">
           Forgot Username
         </Link>
+        <Link to="/resetpassword">
+          Reset Password
+        </Link>
       </div>
     )}
        <Routes>
        <Route  path="/" element={<></>}/>
-       <Route  path="/forgot" element={<Resetpassword />}/>
+       <Route  path="/forgot" element={<Temppassword />}/>
        <Route  path="/forgotuser" element={<Forgotuser />}/>
        <Route  path="/register" element={<Register />}/>
+       <Route  path="/resetpassword" element={<Resetpassword />}/>
        <Route  path="/resetconfirmed" element={<Resetconfirmed />}/>
+       <Route  path="/resetconfirmed2" element={<Resetconfirmed2 />}/>
        <Route  path="/usernameconfirm" element={<Usernameconfirm />}/>
        <Route  path="/login" element={<Login onChange={handleChange}/>}/>    
         </Routes>
