@@ -16,7 +16,7 @@ function Temppassword() {
   let handleSubmit = async (e) => {
     e.preventDefault();
 
-    axios.post('http://localhost:8001/forgot' , {
+    axios.post('https://aqueous-citadel-97605.herokuapp.com/forgot' , {
       username: username,
       email: email,
      }).then((res)=>{

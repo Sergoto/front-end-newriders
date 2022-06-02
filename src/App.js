@@ -39,7 +39,7 @@ function App() {
   };
 
 
-  axios.get('http://localhost:8001/user')
+  axios.get('https://aqueous-citadel-97605.herokuapp.com/user')
   .then(res => {
     console.log(res.data._id)
     if(res.data._id){
@@ -55,7 +55,7 @@ function App() {
 
   
 
-    axios.get('http://localhost:8001/checkAuthentication')
+    axios.get('https://aqueous-citadel-97605.herokuapp.com/checkAuthentication')
       .then(res => {
         setLoggedIn(res.data.authenticated);
       })

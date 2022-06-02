@@ -23,13 +23,13 @@ function Login() {
 let handleSubmit = async (e) => {
     e.preventDefault();
 
-    axios.post('http://localhost:8001/login' , {
+    axios.post('https://aqueous-citadel-97605.herokuapp.com/login' , {
       username: username,
       password: password,
      }).then((res)=>{
          console.log(res);
          
-         axios.get('http://localhost:8001/checkAuthentication')
+         axios.get('https://aqueous-citadel-97605.herokuapp.com/checkAuthentication')
          .then(res => {
             myContext.setLoggedIn(res.data.authenticated);
             nav("/");

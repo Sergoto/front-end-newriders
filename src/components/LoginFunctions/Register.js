@@ -24,7 +24,7 @@ const [password, setPassword] = useState("");
 let handleSubmit = async (e) => {
   e.preventDefault();
 
-  axios.post('http://localhost:8001/register' , {
+  axios.post('https://aqueous-citadel-97605.herokuapp.com/register' , {
     username: username,
     email: email,
     password: password,

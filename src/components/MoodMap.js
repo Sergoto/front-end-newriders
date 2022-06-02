@@ -52,7 +52,7 @@ const [moodselection, setMoodselection ] = useState("");
   
 
   function getToday(){
-  axios.get('http://localhost:8001/today').then((res)=>{
+  axios.get('https://aqueous-citadel-97605.herokuapp.com/today').then((res)=>{
     console.log(res.data.user)
     if(res.data.length>0){
       setId(res.data[0]._id)
@@ -83,7 +83,7 @@ const [moodselection, setMoodselection ] = useState("");
 
    function squareClick (date, e){
      let formDate = date.replaceAll('/', '-')
-    axios.get('http://localhost:8001/date/'+formDate).then((res)=>{
+    axios.get('https://aqueous-citadel-97605.herokuapp.com/date/'+formDate).then((res)=>{
      console.log(res.data.length)
       if(res.data.length>0){
         setId(res.data[0]._id)
@@ -196,7 +196,7 @@ const [moodselection, setMoodselection ] = useState("");
 
     useEffect(() => {
       getToday()
-      let url = "http://localhost:8001/";
+      let url = "https://aqueous-citadel-97605.herokuapp.com/";
       fetch(url, {'credentials': 'include'},) //<-- the url as a string
     // Wait for the response and convert it to json
     .then(res => res.json())
@@ -236,7 +236,7 @@ return map
 let handleSubmit = async (e) => {
   e.preventDefault();
   if(method == "post"){
-  axios.post('http://localhost:8001/add', {
+  axios.post('https://aqueous-citadel-97605.herokuapp.com/add', {
     user: myContext.user,
     mood: mood,
     date: date,
@@ -278,7 +278,7 @@ let handleSubmit = async (e) => {
 }
 else{
 
-  axios.put('http://localhost:8001/'+id, {
+  axios.put('https://aqueous-citadel-97605.herokuapp.com/'+id, {
     mood: mood,
     note: note,
     goalForToday: newgoal,
@@ -318,11 +318,11 @@ else{
 }}
 
 function deleteDay (){
-  axios.delete('http://localhost:8001/'+id)
+  axios.delete('https://aqueous-citadel-97605.herokuapp.com/'+id)
   .then((response) => {
    
 
-    let url = "http://localhost:8001/";
+    let url = "https://aqueous-citadel-97605.herokuapp.com/";
       fetch(url,{'credentials': 'include'}) //<-- the url as a string
     // Wait for the response and convert it to json
     .then(res => res.json())

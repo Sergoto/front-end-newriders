@@ -15,7 +15,7 @@ function Forgotuser() {
   let handleSubmit = async (e) => {
     e.preventDefault();
 
-    axios.post('http://localhost:8001/forgotuser' , {
+    axios.post('https://aqueous-citadel-97605.herokuapp.com/forgotuser' , {
       email: email,
      }).then((res)=>{
          console.log(res);

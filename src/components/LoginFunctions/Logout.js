@@ -9,7 +9,7 @@ function Logout() {
 
    
 
-        axios.get('http://localhost:8001/logout')
+        axios.get('https://aqueous-citadel-97605.herokuapp.com/logout')
         .then(res => {
          console.log(res)
          window.location.reload(false);

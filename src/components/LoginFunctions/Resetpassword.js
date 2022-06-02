@@ -18,7 +18,7 @@ function Resetpassword() {
   let handleSubmit = async (e) => {
     e.preventDefault();
 
-    axios.post('http://localhost:8001/reset' , {
+    axios.post('https://aqueous-citadel-97605.herokuapp.com/reset' , {
       username: username,
       oldpassword: oldpassword,
       newpassword: newpassword,
