@@ -9,21 +9,21 @@ import TAP from "./components/TAP/TAP"
 import Animal from './components/Animal'
 import Resources from './components/Resources';
 import About from './components/About';
-import Login from './components/Login';
-import Register from './components/Register';
+import Login from './components/LoginFunctions/Login';
+import Register from './components/LoginFunctions/Register';
 import AppContext from './components/AppContext';
-import Temppassword from './components/Temppassword';
-import Resetconfirmed from './components/Resetconfirmed';
-import Forgotuser from './components/Forgotuser';
-import Resetconfirmed2 from './components/Resetconfirmed2';
-import Usernameconfirm from './components/Usernameconfirm';
-import Logout from './components/Logout';
+import Temppassword from './components/LoginFunctions/Temppassword';
+import Resetconfirmed from './components/confimations/Resetconfirmed';
+import Forgotuser from './components/LoginFunctions/Forgotuser';
+import Resetconfirmed2 from './components/confimations/Resetconfirmed2';
+import Usernameconfirm from './components/confimations/Usernameconfirm';
+import Logout from './components/LoginFunctions/Logout';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import LoginNav from './LoginForms/LoginNav';
 import LoginHome from './LoginForms/LoginHome'
 
-import Resetpassword from './components/Resetpassword';
+import Resetpassword from './components/LoginFunctions/Resetpassword';
 axios.defaults.withCredentials = true;
 
 function App() {
@@ -108,8 +108,8 @@ function App() {
       )}
       <Routes>
         <Route path="/" exact element={<LoginHome />} />
-        <Route path="/forgot" element={<Temppassword />} />
         <Route path="/forgotuser" element={<Forgotuser />} />
+
         <Route path="/register" element={<Register />} />
         <Route path="/resetpassword" element={<Resetpassword />} />
         <Route path="/resetconfirmed" element={<Resetconfirmed />} />

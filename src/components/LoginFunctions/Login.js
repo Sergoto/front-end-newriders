@@ -1,38 +1,56 @@
+
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Button, TextField } from '@mui/material';
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import AppContext from "../AppContext";
+axios.defaults.withCredentials = true;
 
+function Login() {
+    
 
+    const myContext = useContext(AppContext);
+    const nav = useNavigate();
 
-function Resetpassword() {
-  
+    
+    
   const [username, setUsername] = useState("");
-  const [oldpassword, setOldpassword] = useState("");
+  const [password, setPassword] = useState("");
+
   
-  const [newpassword, setNewpassword] = useState("");
-
-  const nav = useNavigate();
-
-
-  let handleSubmit = async (e) => {
+  
+let handleSubmit = async (e) => {
     e.preventDefault();
 
-    axios.post('http://localhost:8001/reset' , {
+    axios.post('http://localhost:8001/login' , {
       username: username,
-      oldpassword: oldpassword,
-      newpassword: newpassword,
+      password: password,
      }).then((res)=>{
          console.log(res);
-            nav("/resetconfirmed");
-}).catch((error) => {
- console.log(error)
-});
+         
+         axios.get('http://localhost:8001/checkAuthentication')
+         .then(res => {
+            myContext.setLoggedIn(res.data.authenticated);
+            nav("/");
+            
+         })
+         .catch((error) => {
+            myContext.setLoggedIn(false)
+       });
+
+
+         
+        
+     
+})
      }
 
+
+
   return (
-    <div>
-      Reset password
+    <div className="container">
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <br />
 
@@ -48,19 +66,10 @@ function Resetpassword() {
 
         <TextField
           id="outlined-static"
-          label="Old Password"
-          value={oldpassword}
-          placeholder="Old Password"
-          onChange={(e) => setOldpassword(e.target.value)}
-        />
-        <br />
-
-        <TextField
-          id="outlined-static"
-          label="New Password"
-          value={newpassword}
-          placeholder="New Password"
-          onChange={(e) => setNewpassword(e.target.value)}
+          label="password"
+          value={password}
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
         />
 
         <br />
@@ -83,4 +92,6 @@ function Resetpassword() {
   );
 }
 
-export default Resetpassword
+export default Login
+
+

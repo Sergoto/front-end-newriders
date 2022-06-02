@@ -50,20 +50,21 @@ function LoginNav() {
             </li>
             <li className="nav-item">
               <Link
-                to="/forgot"
+                to="/resetpassword"
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                PassWord Reset
+                Change Password
               </Link>
             </li>
+            
                 <li className="nav-item">
               <Link
                 to="/forgotuser"
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                Username Recovery
+                Password/Username Recovery
               </Link>
             </li>
           </ul>

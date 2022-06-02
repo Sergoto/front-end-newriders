@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button, TextField } from '@mui/material';
 import { useNavigate } from "react-router-dom";
-
+import Temppassword from './Temppassword';
 
 
 function Forgotuser() {
@@ -53,6 +53,7 @@ function Forgotuser() {
       <div className="container">
         <img src="https://i.imgur.com/hPOPqz3.jpg"></img>
       </div>
+      <Temppassword />
     </div>
   );
 }
