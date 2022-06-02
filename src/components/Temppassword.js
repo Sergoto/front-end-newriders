@@ -5,12 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 
 
-function Resetpassword() {
+function Temppassword() {
   
   const [username, setUsername] = useState("");
-  const [oldpassword, setOldpassword] = useState("");
-  
-  const [newpassword, setNewpassword] = useState("");
+  const [email, setEmail] = useState("");
 
   const nav = useNavigate();
 
@@ -18,10 +16,9 @@ function Resetpassword() {
   let handleSubmit = async (e) => {
     e.preventDefault();
 
-    axios.post('http://localhost:8001/reset' , {
+    axios.post('http://localhost:8001/forgot' , {
       username: username,
-      oldpassword: oldpassword,
-      newpassword: newpassword,
+      email: email,
      }).then((res)=>{
          console.log(res);
             nav("/resetconfirmed");
@@ -31,8 +28,8 @@ function Resetpassword() {
      }
 
   return (
-    <div>
-      Reset password
+    <div className="container">
+      Reset to temporary password
       <form onSubmit={handleSubmit}>
         <br />
 
@@ -48,19 +45,10 @@ function Resetpassword() {
 
         <TextField
           id="outlined-static"
-          label="Old Password"
-          value={oldpassword}
-          placeholder="Old Password"
-          onChange={(e) => setOldpassword(e.target.value)}
-        />
-        <br />
-
-        <TextField
-          id="outlined-static"
-          label="New Password"
-          value={newpassword}
-          placeholder="New Password"
-          onChange={(e) => setNewpassword(e.target.value)}
+          label="Email"
+          value={email}
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <br />
@@ -83,4 +71,4 @@ function Resetpassword() {
   );
 }
 
-export default Resetpassword
+export default Temppassword
