@@ -28,37 +28,47 @@ function Resetpassword() {
      }
 
   return (
-    <div>Reset Password
-    <form onSubmit={handleSubmit}>
-         
-              <br/>
-    
-              <TextField
-              id="outlined-static"
-              label="Username"
-    
-              value={username}
-              placeholder="Username"
-              onChange={(e) => setUsername(e.target.value)}
-            />
-              
-              <br />
-    
-              <TextField
-              id="outlined-static"
-              label="Email"
-              value={email}
-              placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-    
-              <br />
-              <Button type="submit"  variant='outlined'
-      sx={{ color: 'black', backgroundColor: 'white', borderColor: 'purple' }}>Submit</Button>
-              
-            </form>
-        </div>
-  )
+    <div className="container">
+      <h1>Reset Password</h1>
+      <form onSubmit={handleSubmit}>
+        <br />
+
+        <TextField
+          id="outlined-static"
+          label="Username"
+          value={username}
+          placeholder="Username"
+          onChange={(e) => setUsername(e.target.value)}
+        />
+
+        <br />
+
+        <TextField
+          id="outlined-static"
+          label="Email"
+          value={email}
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <br />
+        <Button
+          type="submit"
+          variant="outlined"
+          sx={{
+            color: "black",
+            backgroundColor: "white",
+            borderColor: "purple",
+          }}
+        >
+          Submit
+        </Button>
+      </form>
+      <div className="container">
+        <img src="https://i.imgur.com/hPOPqz3.jpg"></img>
+      </div>
+    </div>
+  );
 }
 
 export default Resetpassword

@@ -26,23 +26,35 @@ function Forgotuser() {
      }
 
   return (
-    <div>Forgot Username
-    <form onSubmit={handleSubmit}>    
-              <TextField
-              id="outlined-static"
-              label="Email"
-              value={email}
-              placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-    
-              <br />
-              <Button type="submit"  variant='outlined'
-      sx={{ color: 'black', backgroundColor: 'white', borderColor: 'purple' }}>Submit</Button>
-              
-            </form>
-        </div>
-  )
+    <div className="container">
+      <h1>Forgot Username</h1>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          id="outlined-static"
+          label="Email"
+          value={email}
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <br />
+        <Button
+          type="submit"
+          variant="outlined"
+          sx={{
+            color: "black",
+            backgroundColor: "white",
+            borderColor: "purple",
+          }}
+        >
+          Submit
+        </Button>
+      </form>
+      <div className="container">
+        <img src="https://i.imgur.com/hPOPqz3.jpg"></img>
+      </div>
+    </div>
+  );
 }
 
 export default Forgotuser

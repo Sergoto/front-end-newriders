@@ -3,9 +3,7 @@ import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
 import TopBar from "./components/TopBar"
 import Main from './components/Main';
-import MoodMap from './components/MoodMap';
 import Navbar from './components/Navbar';
-import Button from '@mui/material/Button';
 import { Box, Stack } from '@mui/material';
 import TAP from "./components/TAP/TAP"
 import Animal from './components/Animal'
@@ -21,6 +19,9 @@ import Usernameconfirm from './components/Usernameconfirm';
 import Logout from './components/Logout';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import LoginNav from './LoginForms/LoginNav';
+import LoginHome from './LoginForms/LoginHome'
+
 axios.defaults.withCredentials = true;
 
 function App() {
@@ -50,9 +51,7 @@ function App() {
 
   useEffect(() => {
 
-   
-
-
+  
 
     axios.get('http://localhost:8001/checkAuthentication')
       .then(res => {
@@ -88,9 +87,12 @@ function App() {
           </Stack>
        </Box>
     ) : (
-      <div>
-
-        <Link to="/register">
+          <div>
+            <LoginNav />
+            <div className='container'>
+           
+            </div>
+        {/* <Link to="/register">
          Signup
         </Link>
         <Link to="/login">
@@ -101,11 +103,11 @@ function App() {
         </Link>
         <Link to="/forgotuser">
           Forgot Username
-        </Link>
+        </Link> */}
       </div>
     )}
        <Routes>
-       <Route  path="/" element={<></>}/>
+       <Route  path="/" exact element={<LoginHome/>}/>
        <Route  path="/forgot" element={<Resetpassword />}/>
        <Route  path="/forgotuser" element={<Forgotuser />}/>
        <Route  path="/register" element={<Register />}/>
