@@ -14,6 +14,8 @@ import About from './components/About';
 import Login from './components/Login';
 import Register from './components/Register';
 import AppContext from './components/AppContext';
+import Resetpassword from './components/Resetpassword';
+import Resetconfirmed from './components/Resetconfirmed';
 import Logout from './components/Logout';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -92,12 +94,16 @@ function App() {
         <Link to="/login">
           Login
         </Link>
+        <Link to="/forgot">
+          Forgot Password
+        </Link>
       </div>
     )}
        <Routes>
        <Route  path="/" element={<></>}/>
-   
+       <Route  path="/forgot" element={<Resetpassword />}/>
        <Route  path="/register" element={<Register />}/>
+       <Route  path="/resetconfirmed" element={<Resetconfirmed />}/>
        <Route  path="/login" element={<Login onChange={handleChange}/>}/>    
         </Routes>
 
