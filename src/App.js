@@ -3,9 +3,7 @@ import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
 import TopBar from "./components/TopBar"
 import Main from './components/Main';
-import MoodMap from './components/MoodMap';
 import Navbar from './components/Navbar';
-import Button from '@mui/material/Button';
 import { Box, Stack } from '@mui/material';
 import TAP from "./components/TAP/TAP"
 import Animal from './components/Animal'
@@ -22,6 +20,9 @@ import Usernameconfirm from './components/Usernameconfirm';
 import Logout from './components/Logout';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import LoginNav from './LoginForms/LoginNav';
+import LoginHome from './LoginForms/LoginHome'
+
 import Resetpassword from './components/Resetpassword';
 axios.defaults.withCredentials = true;
 
@@ -52,9 +53,7 @@ function App() {
 
   useEffect(() => {
 
-   
-
-
+  
 
     axios.get('http://localhost:8001/checkAuthentication')
       .then(res => {
@@ -71,28 +70,26 @@ function App() {
 
   return (
     <AppContext.Provider value={userSettings}>
-        
-	 
-    {loggedIn ? 
-    (
-         <Box className="App">
-         <TopBar/>
-         <Stack direction="row" spacing={2} justifyContent="space-between">
-         <Navbar />
-           
-              <Routes>
-       <Route path="/" element={<Main/>}/>
-       <Route path="/tap" element={<TAP/>}/>
-       <Route path="/animals" element={<Animal/>}/>
-       <Route path="/about" element={<About/>}/>
-       <Route path="/logout" element={<Logout/>}/>
-       </Routes>
-          </Stack>
-       </Box>
-    ) : (
-      <div>
+      {loggedIn ? (
+        <Box className="App">
+          <TopBar />
+          <Stack direction="row" spacing={2} justifyContent="space-between">
+            <Navbar />
 
-        <Link to="/register">
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="/tap" element={<TAP />} />
+              <Route path="/animals" element={<Animal />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/logout" element={<Logout />} />
+            </Routes>
+          </Stack>
+        </Box>
+      ) : (
+        <div>
+          <LoginNav />
+          <div className="container"></div>
+          {/* <Link to="/register">
          Signup
         </Link>
         <Link to="/login">
@@ -106,22 +103,21 @@ function App() {
         </Link>
         <Link to="/resetpassword">
           Reset Password
-        </Link>
-      </div>
-    )}
-       <Routes>
-       <Route  path="/" element={<></>}/>
-       <Route  path="/forgot" element={<Temppassword />}/>
-       <Route  path="/forgotuser" element={<Forgotuser />}/>
-       <Route  path="/register" element={<Register />}/>
-       <Route  path="/resetpassword" element={<Resetpassword />}/>
-       <Route  path="/resetconfirmed" element={<Resetconfirmed />}/>
-       <Route  path="/resetconfirmed2" element={<Resetconfirmed2 />}/>
-       <Route  path="/usernameconfirm" element={<Usernameconfirm />}/>
-       <Route  path="/login" element={<Login onChange={handleChange}/>}/>    
-        </Routes>
-
-  </AppContext.Provider>
+        </Link> */}
+        </div>
+      )}
+      <Routes>
+        <Route path="/" exact element={<LoginHome />} />
+        <Route path="/forgot" element={<Temppassword />} />
+        <Route path="/forgotuser" element={<Forgotuser />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/resetpassword" element={<Resetpassword />} />
+        <Route path="/resetconfirmed" element={<Resetconfirmed />} />
+        <Route path="/resetconfirmed2" element={<Resetconfirmed2 />} />
+        <Route path="/usernameconfirm" element={<Usernameconfirm />} />
+        <Route path="/login" element={<Login onChange={handleChange} />} />
+      </Routes>
+    </AppContext.Provider>
   );
 }
 

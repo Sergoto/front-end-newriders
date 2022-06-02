@@ -31,46 +31,56 @@ function Resetpassword() {
      }
 
   return (
-    <div>Reset password
-    <form onSubmit={handleSubmit}>
-         
-              <br/>
-    
-              <TextField
-              id="outlined-static"
-              label="Username"
-    
-              value={username}
-              placeholder="Username"
-              onChange={(e) => setUsername(e.target.value)}
-            />
-              
-              <br />
-    
-              <TextField
-              id="outlined-static"
-              label="Old Password"
-              value={oldpassword}
-              placeholder="Old Password"
-              onChange={(e) => setOldpassword(e.target.value)}
-            />
-             <br />
-    
-          <TextField
-           id="outlined-static"
-           label="New Password"
-            value={newpassword}
-            placeholder="New Password"
+    <div>
+      Reset password
+      <form onSubmit={handleSubmit}>
+        <br />
+
+        <TextField
+          id="outlined-static"
+          label="Username"
+          value={username}
+          placeholder="Username"
+          onChange={(e) => setUsername(e.target.value)}
+        />
+
+        <br />
+
+        <TextField
+          id="outlined-static"
+          label="Old Password"
+          value={oldpassword}
+          placeholder="Old Password"
+          onChange={(e) => setOldpassword(e.target.value)}
+        />
+        <br />
+
+        <TextField
+          id="outlined-static"
+          label="New Password"
+          value={newpassword}
+          placeholder="New Password"
           onChange={(e) => setNewpassword(e.target.value)}
-              />
-    
-              <br />
-              <Button type="submit"  variant='outlined'
-      sx={{ color: 'black', backgroundColor: 'white', borderColor: 'purple' }}>Submit</Button>
-              
-            </form>
-        </div>
-  )
+        />
+
+        <br />
+        <Button
+          type="submit"
+          variant="outlined"
+          sx={{
+            color: "black",
+            backgroundColor: "white",
+            borderColor: "purple",
+          }}
+        >
+          Submit
+        </Button>
+      </form>
+      <div className="container">
+        <img src="https://i.imgur.com/hPOPqz3.jpg"></img>
+      </div>
+    </div>
+  );
 }
 
 export default Resetpassword

@@ -28,7 +28,7 @@ function TopBar() {
             sx={{ color: "black", alignItems: "center" }}
           >
             {" "}
-            Welcome to Mind Over Matter, Your Mental Health Tracker
+          Mind Over Matter, Your Mental Health Tracker
           </Typography>
         </Toolbar>
       </AppBar>

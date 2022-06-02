@@ -19,7 +19,11 @@ function Logout() {
       });
     }, []);
   return (
-    <div>Logout</div>
+    <div className='container'>Logout
+    <div className="container">
+        <img src="https://i.imgur.com/hPOPqz3.jpg"></img>
+      </div>
+      </div>
   )
 }
 

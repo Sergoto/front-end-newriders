@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Button, TextField } from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-
 import { useContext } from "react";
 import AppContext from "./AppContext";
 axios.defaults.withCredentials = true;
@@ -50,23 +49,22 @@ let handleSubmit = async (e) => {
 
 
   return (
-    <div>Login
-<form onSubmit={handleSubmit}>
-     
-          <br/>
+    <div className="container">
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit}>
+        <br />
 
-          <TextField
+        <TextField
           id="outlined-static"
           label="Username"
-
           value={username}
           placeholder="Username"
           onChange={(e) => setUsername(e.target.value)}
         />
-          
-          <br />
 
-          <TextField
+        <br />
+
+        <TextField
           id="outlined-static"
           label="password"
           value={password}
@@ -74,13 +72,24 @@ let handleSubmit = async (e) => {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-          <br />
-          <Button type="submit"  variant='outlined'
-  sx={{ color: 'black', backgroundColor: 'white', borderColor: 'purple' }}>Submit</Button>
-          
-        </form>
+        <br />
+        <Button
+          type="submit"
+          variant="outlined"
+          sx={{
+            color: "black",
+            backgroundColor: "white",
+            borderColor: "purple",
+          }}
+        >
+          Submit
+        </Button>
+      </form>
+      <div className="container">
+        <img src="https://i.imgur.com/hPOPqz3.jpg"></img>
+      </div>
     </div>
-  )
+  );
 }
 
 export default Login

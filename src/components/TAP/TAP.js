@@ -1,7 +1,6 @@
 import React from 'react'
-import TAPForm from './TAPForm'
 import TAPList from './TAPList'
-
+import './TAP.css'
 function TAP() {
   return (
     <div className='tap'>
