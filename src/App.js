@@ -115,6 +115,8 @@ function App() {
         <Route path="/resetconfirmed" element={<Resetconfirmed />} />
         <Route path="/resetconfirmed2" element={<Resetconfirmed2 />} />
         <Route path="/usernameconfirm" element={<Usernameconfirm />} />
+        
+        <Route path="/logout" element={<LoginHome />} />
         <Route path="/login" element={<Login onChange={handleChange} />} />
       </Routes>
     </AppContext.Provider>
