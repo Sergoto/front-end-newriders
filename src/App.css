@@ -39,6 +39,20 @@
   row-gap: 15px;
   justify-items: center;
 }
+.aboutContainer {
+  padding-top: 40px;
+  padding-bottom: 40px
+}
+.aboutHeading{
+font-size: 26px;
+}
+.underline {
+  height: 04px;
+  width: 4rem;
+margin-top: 10px;
+margin-bottom: 10px;
+  margin-left: 0px;
+}
 
 .container {
   display: grid;

@@ -393,6 +393,16 @@ function selectMood(e){
 const handleChange = () => {
   setChecked(!checked);
 };
+
+function showDelete(method) {
+  if(method == "put"){
+    return(<Button  variant='outlined'
+    sx={{ color: 'red', backgroundColor: 'white', borderColor: 'purple' }} onClick={deleteDay}>Delete</Button>)
+  }
+  else{
+    return (<></>)
+  }
+}
   
    
   return (
@@ -405,13 +415,16 @@ const handleChange = () => {
           {mapSquares(squares)}
         </div>
       </div>
+
+
       <div className='cards'>
         <div style={{display:"flex", justifyContent:"center"}}>
         
-          <h5>{date}</h5>
+          <h4>{date}</h4>
        
         </div>
-        <br />
+        
+        <Divider  style={{marginBottom:"10px"}}/>
         <form onSubmit={handleSubmit}>
           <span>Mood</span>
           <div style={{display:"flex"}}>
@@ -421,14 +434,13 @@ const handleChange = () => {
             <div className='hex' onClick={selectMood} id="c6f1c6" style={{backgroundColor:"#c6f1c6"}}></div>
             <div className='hex' onClick={selectMood} id="58d558" style={{backgroundColor:"#58d558"}}></div>
           </div>
-          <br />
-         <Divider/>
             <br />
           <span>Notes:</span>
           <br/>
 
           <TextField
           id="outlined-multiline-static"
+          style = {{width: "425px"}}
           label="Notes"
           multiline
           rows={2}
@@ -444,6 +456,7 @@ const handleChange = () => {
           <TextField
           id="outlined-multiline-static"
           label="Goals for today"
+          style = {{width: "425px"}}
           multiline
           rows={2}
 
@@ -475,9 +488,8 @@ const handleChange = () => {
     <>
 
     <br />
-    <Button  variant='outlined'
-  sx={{ color: 'red', backgroundColor: 'white', borderColor: 'purple' }} onClick={deleteDay}>Delete</Button>
- 
+    
+ {showDelete(method)}
     </>
   </div>
     </div>
