@@ -48,6 +48,7 @@ function Temppassword() {
           className="form-inputs"
           id="outlined-static"
           label="Email"
+          type="email"
           value={email}
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
@@ -55,7 +56,7 @@ function Temppassword() {
 
         <br />
         <button className="form-input-btn" type="submit">
-          Log In
+          Submit
         </button>
         {/* <Button
           type="submit"

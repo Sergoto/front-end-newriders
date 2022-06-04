@@ -54,6 +54,7 @@ function Resetpassword() {
           <TextField
             className="form-inputs"
             id="outlined-static"
+            type="password"
             label="Old Password"
             value={oldpassword}
             placeholder="Old Password"
@@ -64,6 +65,7 @@ function Resetpassword() {
           <TextField
             className="form-inputs"
             id="outlined-static"
+            type="password"
             label="New Password"
             value={newpassword}
             placeholder="New Password"
