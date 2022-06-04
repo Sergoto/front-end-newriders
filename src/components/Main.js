@@ -4,8 +4,8 @@ import { Box } from "@mui/material";
 
 function Main() {
   return (
-    <Box flex={4} p={2}
-      className="container cards">
+    <Box flex={4} p={2} 
+      className="container cards" id="paddingFix">
         <MoodMap />
     </Box>
   );
