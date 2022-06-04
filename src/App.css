@@ -34,9 +34,10 @@
 
 #gridContainer{
   display: grid;
-  grid-template-columns: 10px 10px 10px 10px 10px 10px 10px 10px 10px 10px;
-  column-gap: 20px;
-  row-gap: 20px;
+  grid-template-columns: 20px 20px 20px 20px 20px 20px 20px 20px 20px 20px;
+  column-gap: 25px;
+  row-gap: 15px;
+  justify-items: center;
 }
 
 .container {

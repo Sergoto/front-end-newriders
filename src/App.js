@@ -60,6 +60,7 @@ function App() {
     axios.get('https://aqueous-citadel-97605.herokuapp.com/checkAuthentication')
       .then(res => {
         setLoggedIn(res.data.authenticated);
+     
       })
       .catch((error) => {
         setLoggedIn(false)
