@@ -7,9 +7,10 @@ function Square(props) {
 
   const mystyle = {
     color: backgroundColor,
-    width:"10px",
+    width:"32px",
+    height:"32px",
     background: backgroundColor,
-    padding: "10px",
+    padding: "0px",
     border:"1px solid"
   };
   return (

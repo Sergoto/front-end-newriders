@@ -71,6 +71,7 @@ let handleSubmit = async (e) => {
                 className="form-inputs"
                 id="outlined-static"
                 label="password"
+                type="password"
                 value={password}
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
