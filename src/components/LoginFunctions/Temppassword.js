@@ -55,7 +55,7 @@ function Temppassword() {
 
         <br />
         <button className="form-input-btn" type="submit">
-          Log In
+          Submit
         </button>
         {/* <Button
           type="submit"

@@ -44,7 +44,7 @@ function Forgotuser() {
 
           <br />
           <button className="form-input-btn" type="submit">
-            Log In
+            Submit
           </button>
           {/* <Button
             className="form-inputs"
