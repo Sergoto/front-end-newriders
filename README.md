@@ -2,7 +2,7 @@
 ![Logo](https://i.imgur.com/H4ksjjK.png)
 ## Application Link: [Sign up or login here](https://symphonious-gumdrop-992391.netlify.app/) 
 ## Project Description
-  Mood Map is an app designed to help you keep track of your
+                Mood Map is an app designed to help you keep track of your
                 mental health. Using Mood Map, keep track of your mental health
                 by recording your mood each day by color that paints a beautiful
                 picture of your mood over 100 days. Mood Map also features a
@@ -23,9 +23,15 @@
   
 - As a user I want to be able to track my mood each day visually
 - As a user I want to be able to log in and keep my data safe
+- As a user I want to create mental health goals and keep track of them with trigger action plan
+- As a user I want access to resources for more help/professional help if I need it
+- As a user I want to be able to look back at my journey to see how far I've come
+
 
 ## Features to Improve in Future
 - Mood color customizer 
+- Expanded notes and journal section
+- More resources
 
 # Getting Started with Create React App
 
@@ -42,3 +48,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+### Built by:
+Bradley Hazel, David Lin & Ross Warren

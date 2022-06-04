@@ -25,6 +25,7 @@ import LoginHome from './LoginForms/LoginHome'
 import Professional from './components/Professional'
 import Meditation from './components/Meditation'
 
+
 import Resetpassword from './components/LoginFunctions/Resetpassword';
 axios.defaults.withCredentials = true;
 
