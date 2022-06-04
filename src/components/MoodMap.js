@@ -478,19 +478,16 @@ function showDelete(method) {
      
       </label>
 
-          <br/>
-          <Divider/>
           <br />
+          <br />
+          <div style={{display:"flex",justifyContent:"space-evenly"}}>
           <Button type="submit"  variant='outlined'
   sx={{ color: 'black', backgroundColor: 'white', borderColor: 'purple' }}>{buttonMessage}</Button>
           
-        </form>
-    <>
-
-    <br />
-    
  {showDelete(method)}
-    </>
+ </div>
+        </form>
+ 
   </div>
     </div>
   );
