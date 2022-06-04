@@ -434,8 +434,7 @@ function showDelete(method) {
             <div className='hex' onClick={selectMood} id="c6f1c6" style={{backgroundColor:"#c6f1c6"}}></div>
             <div className='hex' onClick={selectMood} id="58d558" style={{backgroundColor:"#58d558"}}></div>
           </div>
-            <br />
-          <span>Notes:</span>
+         
           <br/>
 
           <TextField
