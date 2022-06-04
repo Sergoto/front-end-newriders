@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import PropTypes from "prop-types";
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
+import Collapse from "@mui/material/Collapse";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -18,10 +18,22 @@ import { mainNavBarItems } from "./Consts/NavbarItems";
 import { bottomNavBarItems } from "./Consts/NavbarItems";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import MoodMap from "./MoodMap";
-import Main from "./Main";
+
+
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import StarBorder from "@mui/icons-material/StarBorder";
+import InboxIcon from "@mui/icons-material/Inbox";
 
 function ResponsiveDrawer(props) {
+
+  const [open, setOpen] = React.useState(false);
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
+
+
   const drawerWidth = 250;
   const navigate = useNavigate();
   const { window } = props;
@@ -31,12 +43,11 @@ function ResponsiveDrawer(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
   const drawer = (
     <div>
       <Toolbar>
         <Typography >
-          <Link to="/">
+          <Link to="/home">
             <img
               src="https://i.imgur.com/qg770Cq.png"
               width={225}
@@ -46,7 +57,6 @@ function ResponsiveDrawer(props) {
         </Typography>
       </Toolbar>
       <Divider />
-
       <List>
         {mainNavBarItems.map((item, index) => (
           <ListItem key={item.id} onClick={() => navigate(item.route)}>
@@ -56,6 +66,42 @@ function ResponsiveDrawer(props) {
             </ListItemButton>
           </ListItem>
         ))}
+      </List>
+      <List>
+        <ListItemButton onClick={handleClick}>
+        <ListItemText primary= "Resources" />
+        {open ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in ={open} timeout="auto" unmountonExit>
+          <List component="div" disablePadding>
+            <ListItemButton sx={{ pl: 4}}>
+            </ListItemButton>
+            <ListItem key ="Professional Help" component={Link}  to="/professional">
+            <ListItemButton sx={{ pl: 4}}>
+             <ListItemIcon>
+               <InboxIcon />
+               </ListItemIcon>
+               <ListItemText primary="Professional Help"  />
+            </ListItemButton>
+            </ListItem>
+            <ListItem key ="Cute Animals" component={Link}  to="/animal">
+            <ListItemButton sx={{ pl: 4}}>
+             <ListItemIcon>
+               <InboxIcon />
+               </ListItemIcon>
+               <ListItemText primary="Cute Animals" />
+            </ListItemButton>
+            </ListItem>
+            <ListItem key ="Mediation and Breathing" component={Link}  to="/meditation">
+            <ListItemButton sx={{ pl: 4}}>
+             <ListItemIcon>
+               <InboxIcon />
+               </ListItemIcon>
+               <ListItemText primary="Meditation" />
+            </ListItemButton>
+            </ListItem>
+          </List>
+        </Collapse>
       </List>
       <Divider />
       <List>
@@ -70,10 +116,8 @@ function ResponsiveDrawer(props) {
       </List>
     </div>
   );
-
   const container =
     window !== undefined ? () => window().document.body : undefined;
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -97,7 +141,7 @@ function ResponsiveDrawer(props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, 
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },
@@ -138,9 +182,7 @@ function ResponsiveDrawer(props) {
     </Box>
   );
 }
-
 ResponsiveDrawer.propTypes = {
   window: PropTypes.func,
 };
-
 export default ResponsiveDrawer;

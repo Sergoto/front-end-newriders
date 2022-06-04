@@ -22,6 +22,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import LoginNav from './LoginForms/LoginNav';
 import LoginHome from './LoginForms/LoginHome'
+import Professional from './components/Professional'
+import Meditation from './components/Meditation'
 
 import Resetpassword from './components/LoginFunctions/Resetpassword';
 axios.defaults.withCredentials = true;
@@ -77,11 +79,15 @@ function App() {
             <Navbar />
 
             <Routes>
-              <Route path="/" element={<Main />} />
+              <Route path="/home" element={<Main />} />
               <Route path="/tap" element={<TAP />} />
               <Route path="/animals" element={<Animal />} />
               <Route path="/about" element={<About />} />
               <Route path="/logout" element={<Logout />} />
+
+              <Route path="/meditation" element={<Meditation />} />
+              <Route path="/animal" element={<Animal />} />
+              <Route path="/professional" element={<Professional />} />
             </Routes>
           </Stack>
         </Box>

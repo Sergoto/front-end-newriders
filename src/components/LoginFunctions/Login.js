@@ -32,7 +32,7 @@ let handleSubmit = async (e) => {
          axios.get('https://aqueous-citadel-97605.herokuapp.com/checkAuthentication')
          .then(res => {
             myContext.setLoggedIn(res.data.authenticated);
-            nav("/");
+            nav("/home");
             
          })
          .catch((error) => {
