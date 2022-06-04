@@ -14,13 +14,9 @@ function LoginHome() {
       <h3 className="home-h3">
         Sign up now to start taking care of your mental.{" "}
       </h3>
-      <button
-        className="home-btn" type="submit"
-      >
-      <Link to="/register">
-        GET STARTED
-        </Link>
-      </button>
+      <Button className="home-btn" href="/register">GET STARTED</Button>
+     
+
     </div>
   );
 }
